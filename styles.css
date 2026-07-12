@@ -158,3 +158,13 @@ fondo:before {
 .btn-modal-amarillo:active {
     transform: scale(0.98);
 }
+
+
+/* Ahora aplica a todos los botones que usen este estilo de icono */
+.icono-boton {
+    width: 20px;  /* Un tamaño ideal para que quepa bien dentro de un botón con texto */
+    height: 20px;
+    display: inline-block; 
+    vertical-align: middle; /* Lo alinea perfectamente con el texto del botón */
+    margin-right: 8px;     /* Separa el SVG de las palabras */
+}

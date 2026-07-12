@@ -22,7 +22,9 @@ function acumularVerso(event, autor = "Anónimo") {
     versoAnterior = versos[versos.length -2]
     document.getElementById("ultimo-verso").innerText = versoAnterior
     document.getElementById("titulo-seccion").textContent = "VERSO ANTERIOR..."
-    document.getElementById("sonido-aldeano").play()
+    //document.getElementById("sonido-aldeano").play()
+    reproducirSonidoAzar() 
+
 }
 
 const terminarPoema = () => {
@@ -39,7 +41,10 @@ const terminarPoema = () => {
         // const sonido = document.getElementById("sonido-final")
         video.playbackRate = 2
         video.play()  
-        // sonido.play()
+        const audio = new Audio("./assets/sounds/funebre.mp3")
+        audio.playbackRate = 1.2
+        audio.volume = 0.8
+        audio.play()
          document.getElementById("nuevo-poema").disabled = false // efecto de destacar
     }
 }
@@ -65,8 +70,7 @@ const nuevoPoema = () => {
     document.getElementById("alertas").hidden = true
     document.getElementById("video-fondo").currentTime = 0
     document.getElementById("video-fondo").playbackRate  = 1
-    document.getElementById("video-fondo").pause()
-    
+    document.getElementById("video-fondo").pause()    
 }
 
 
@@ -248,6 +252,39 @@ function alertaTexto () {
             alertaTextoElemento.innerHTML = `Caracteres: <span>${longitud}</span>/42`
         
         }})
+}
+
+
+// Audios al azar para nuevo
+
+const sonidosPool = [
+    "./assets/sounds/send-sound/aldeano1.mp3",
+    "./assets/sounds/send-sound/coin.mp3",
+    "./assets/sounds/send-sound/Witch_celebrate.mp3",
+    "./assets/sounds/send-sound/sendo (1).mp3",
+    "./assets/sounds/send-sound/sendo (2).mp3",
+    "./assets/sounds/send-sound/sendo (3).mp3",
+    "./assets/sounds/send-sound/sendo (4).mp3",
+    "./assets/sounds/send-sound/sendo (5).mp3",
+    "./assets/sounds/send-sound/sendo (1).ogg",
+    "./assets/sounds/send-sound/sendo (2).ogg",
+    "./assets/sounds/send-sound/sendo (3).ogg",
+    "./assets/sounds/send-sound/sendo (4).ogg",
+    "./assets/sounds/send-sound/sendo (5).ogg",
+    "./assets/sounds/send-sound/sendo (6).ogg",
+    "./assets/sounds/send-sound/sendo (7).ogg",
+    "./assets/sounds/send-sound/sendo (8).ogg",
+    "./assets/sounds/send-sound/sendo (9).ogg",
+    "./assets/sounds/send-sound/sendo (10).ogg",
+    "./assets/sounds/send-sound/sendo (11).ogg",
+];
+
+function reproducirSonidoAzar() {
+    const indiceAzar = Math.floor(Math.random() * sonidosPool.length);
+    const rutaSeleccionada = sonidosPool[indiceAzar];
+    const audioAzar = new Audio(rutaSeleccionada);
+    //audioAzar.volume = 0.8; 
+    audioAzar.play();
 }
 
 
