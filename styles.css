@@ -12,6 +12,7 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 10px;
+    color: white;
 }
 
 .tools #copias {
@@ -81,4 +82,79 @@ fondo:before {
     color: #ecd078;
     border-radius: 12px;
 
+}
+
+.cadaver{
+    color: #ECD078;
+    padding: 1em;
+}
+
+.input-group{
+    /* gap: 0.5em; */
+    }
+
+#continuar{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#btn-info {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    opacity: 0.75;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease, transform 0.2s ease; /* hace la transición cuando ocurre el hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#btn-info:hover {
+    opacity: 1; 
+    transform: scale(1.25);
+    cursor: pointer;
+}
+
+.cita-surrealista {
+    background-color: #1a445a; 
+    padding: 1.25rem;
+    border-radius: 8px;
+    border-left: 5px solid #ECD078; 
+    font-style: normal;
+    color: #ffffff; 
+    line-height: 1.6; 
+}
+
+.cita-surrealista p {
+    margin-bottom: 0;
+}
+
+.btn-modal-amarillo {
+    /* Fondo azul petróleo y texto blanco */
+    background-color: #1a445a;
+    color: #ffffff;
+    border: 2px solid #1a445a;
+    padding: 0.375rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+/* Efecto al pasar el mouse por encima (Hover) */
+.btn-modal-amarillo:hover {
+    /* El fondo se transforma en el ocre/dorado y el texto pasa a oscuro para contrastar */
+    background-color: #ECD078;
+    border-color: #ECD078;
+    color: #1a445a;
+    cursor: pointer;
+}
+
+/* Efecto cuando se hace clic */
+.btn-modal-amarillo:active {
+    transform: scale(0.98);
 }
