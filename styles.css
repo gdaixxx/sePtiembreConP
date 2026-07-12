@@ -1,0 +1,84 @@
+*{
+    font-family: "Quicksand", sans-serif;
+    
+}
+
+#alertas{
+    color:#ECD078 !important
+}
+
+.tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.tools #copias {
+    width: 70px;
+}
+
+form{
+    gap: 0.5em;
+    display: flex;
+    flex-direction: column;
+    margin: 1.5em
+}
+
+.fondo,
+.fondo:before{
+  --s: 56px; /* control the size */
+  --g: 10px; /* control the gap */
+  --c: #ECD078; /* first color */
+  
+  --_l: #0000 calc(33% - .866*var(--g)),var(--c) calc(33.2% - .866*var(--g)) 33%,#0000 34%;
+  background:
+    repeating-linear-gradient(var(--c) 0 var(--g), #0000 0 50%)
+     0 calc(.866*var(--s) - var(--g)/2),
+    conic-gradient(from -150deg at var(--g) 50%,var(--c) 120deg,#0000 0),
+    linear-gradient(-120deg,var(--_l)),linear-gradient( -60deg,var(--_l))
+    #0B486B; /* second color */
+  background-size: var(--s) calc(3.466*var(--s));
+  animation: p infinite 2s linear;
+}
+fondo:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  -webkit-mask: 
+    linear-gradient(#000 50%,#0000 0) 
+    0 calc(.866*var(--s))/100% calc(3.466*var(--s));
+  animation-direction: reverse;
+}
+@keyframes p {
+  to {
+    background-position-x: calc(-1*var(--s));
+  }
+}
+
+#video-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -100;
+    background-color: #000; 
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+}
+
+.video-oculto {
+    opacity: 0;
+}
+
+.poema-container{
+    margin: 1em;
+    padding: 2em;
+    /* background-color: hsl(0, 0%, 80%); */
+    background-color: hsl(202, 81%, 23%, 0.4);
+    color: #ecd078;
+    border-radius: 12px;
+
+}
