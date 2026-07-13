@@ -3,6 +3,10 @@ const verVersoAnterior = true
 let versoAnterior = "" 
 const nombreEstudiante = ""
 let poema = ""
+const txt = document.getElementById("nuevo-verso")
+const form = document.getElementById("text-input")
+const continuarBtn = document.getElementById("continuar")
+
 
 function acumularVerso(event, autor = "Anónimo") {
     event.preventDefault()
@@ -23,7 +27,12 @@ function acumularVerso(event, autor = "Anónimo") {
     document.getElementById("ultimo-verso").innerText = versoAnterior
     document.getElementById("titulo-seccion").textContent = "VERSO ANTERIOR..."
     //document.getElementById("sonido-aldeano").play()
-    reproducirSonidoAzar() 
+
+        const alertaTextoElemento = document.getElementById("alertas")
+        alertaTextoElemento.innerHTML = `Caracteres: <span id="contador-caracteres">0</span>/42`
+        
+    reproducirSonidoAzar()
+    habilitarTerminar() 
 
 }
 
@@ -33,19 +42,20 @@ const terminarPoema = () => {
         document.getElementById("poema-terminado").hidden = false
         document.getElementById("ultimo-verso").hidden = true
         document.getElementById("terminar").disabled = true
+        document.getElementById("terminar").classList.remove("btn-warning")
+
+        habilitarImprimir()
+
         document.getElementById("continuar").disabled = true
         document.getElementById("anonimo").disabled = true
-        document.getElementById("imprimir").disabled = false
+        document.getElementById("nuevo-verso").disabled = true
         document.getElementById("titulo-seccion").textContent = "POEMA TERMINADO"
         const video = document.getElementById("video-fondo")
         // const sonido = document.getElementById("sonido-final")
         video.playbackRate = 2
         video.play()  
-        const audio = new Audio("./assets/sounds/funebre.mp3")
-        audio.playbackRate = 1.2
-        audio.volume = 0.8
-        audio.play()
-         document.getElementById("nuevo-poema").disabled = false // efecto de destacar
+        reproducirSonido("./assets/sounds/funebre.mp3", 1.2, 0.8)
+        document.getElementById("nuevo-poema").disabled = false // efecto de destacar
     }
 }
 
@@ -61,16 +71,18 @@ const nuevoPoema = () => {
             document.getElementById("poema-terminado").innerText = poema
     
     document.getElementById("terminar").disabled = false
-    document.getElementById("continuar").disabled = false
+    document.getElementById("continuar").disabled = true
     document.getElementById("anonimo").disabled = false
-    document.getElementById("imprimir").disabled = true
     document.getElementById("poema-container").classList.add("d-none")
     document.getElementById("nuevo-poema").disabled = true
+    document.getElementById("nuevo-verso").disabled = false
     document.getElementById("alertas").innerHTML = ""
-    document.getElementById("alertas").hidden = true
     document.getElementById("video-fondo").currentTime = 0
     document.getElementById("video-fondo").playbackRate  = 1
-    document.getElementById("video-fondo").pause()    
+    document.getElementById("video-fondo").pause() 
+    habilitarTerminar()   
+    deshabilitarImprimir()
+    reproducirSonido("./assets/sounds/cancel.mp3", 1, 1)
 }
 
 
@@ -121,6 +133,7 @@ const imprimirCadaver = () => {
         }
     } 
 
+    reproducirSonido("./assets/sounds/ring.mp3", 1, 1)
     ventanaImpresion.document.write('</body></html>')
     ventanaImpresion.document.close()
     ventanaImpresion.print()
@@ -169,31 +182,6 @@ const normalizarTexto = (texto) => {
     return textoNormalizado.join("\n")
 }
 
-        
-
-
-        // if (verso.length > 42) {
-        //     // Buscamos el último espacio en blanco antes del carácter 40
-        //     let indiceCorte = verso.lastIndexOf(" ", 40)
-            
-        //     // Si no encuentra ningún espacio, corta forzado en el 40
-        //     if (indiceCorte === -1) indiceCorte = 40
-            
-        //     // Dividimos el verso en dos partes limpias e insertamos el salto de línea
-        //     let parte1 = verso.substring(0, indiceCorte)
-        //     let parte2 = verso.substring(indiceCorte).trim()
-            
-        //     return `${parte1}\n [${parte2}`
-        // }    
-        
-        // Regla de oro de MAP: si mide menos de 42, lo devolvemos intacto
-        // return verso; 
-    // });
-
-    // Unimos el array de nuevo en un solo string para mandarlo a la ticketera
-    // return textoNormalizado.join("\n");
-// }
-
 
  const insertarFecha = () => {
     return new Date().toLocaleString('es-AR', {
@@ -231,27 +219,84 @@ LA FIGURA DEL AUTOR.
 // VALIDACION 
 
 function alertaTexto () {
-    const txt = document.getElementById("nuevo-verso")
+
     // const contador = document.getElementById("contador-de-caracteres")
     const alertaTextoElemento = document.getElementById("alertas")
 
     txt.addEventListener("input", (event) => {
         const longitud = txt.value.length
         // contador.innerText = longitud
-        
-        console.log (longitud)
+
         if(longitud > 42){
             txt.classList.add("border-warning", "shadow-none")
             alertaTextoElemento.classList.remove("text-muted")
             alertaTextoElemento.classList.add("text-warning")
-            alertaTextoElemento.innerHTML = `Caracteres: <strong>${longitud}</strong>/42. ¡Verso largo! Se imprimirá en dos renglones con [ ]`
+            alertaTextoElemento.innerHTML = `Caracteres: <strong> ${longitud}</strong>/42. ¡Verso largo! Se imprimirá en dos renglones con [ ]`
         } else {
             txt.classList.remove("border-warning")
             alertaTextoElemento.classList.remove("text-warning")
             alertaTextoElemento.classList.add("text-muted")
-            alertaTextoElemento.innerHTML = `Caracteres: <span>${longitud}</span>/42`
+            alertaTextoElemento.innerHTML = `Caracteres: <span id="contador-caracteres">${longitud}</span>/42`
         
-        }})
+        }
+        
+        document.getElementById("continuar").disabled = (longitud === 0)
+
+    })
+
+}
+
+
+// Destacado - confiar en la IA
+
+form.addEventListener("submit", (event) => {
+
+    continuarBtn.classList.add("btn-highlight")
+    setTimeout(() => continuarBtn.classList.remove("btn-highlight"), 1000)
+
+    txt.classList.add("input-energia-carga")
+    setTimeout(() => txt.classList.remove("input-energia-carga"), 1000)
+
+})
+
+// Cambio de color de botones
+function setEstadoBoton(boton, activo) {
+    boton.disabled = !activo
+
+    if (activo) {
+        boton.classList.add("btn-warning")
+    } else {
+        boton.classList.remove("btn-warning")
+    }
+}
+
+// Estilado de pesudoboton segun este activo o no
+function deshabilitarImprimir() {
+    const wrapper = document.getElementById("imprimir-wrapper")
+    const btn = document.getElementById("imprimir")
+    const input = document.getElementById("copias")
+
+    wrapper.classList.add("disabled")
+    btn.disabled = true
+    input.disabled = true
+}
+
+function habilitarImprimir() {
+    const wrapper = document.getElementById("imprimir-wrapper")
+    const btn = document.getElementById("imprimir")
+    const input = document.getElementById("copias")
+
+    wrapper.classList.remove("disabled")
+    btn.disabled = false
+    input.disabled = false
+}
+
+// Reproducir sonido
+function reproducirSonido(ruta, velocidad = 1, volumen = 1) {
+    const audio = new Audio(ruta)
+    audio.playbackRate = velocidad
+    audio.volume = volumen
+    audio.play()
 }
 
 
@@ -287,7 +332,21 @@ function reproducirSonidoAzar() {
     audioAzar.play();
 }
 
-
+function habilitarTerminar() {
+    const terminarBtn = document.getElementById("terminar")
+    const desecharBtn = document.getElementById("nuevo-poema")
+    if(poema.length > 0){
+        terminarBtn.disabled = false
+        terminarBtn.classList.add("btn-warning")
+        desecharBtn.disabled = false
+        desecharBtn.classList.add("btn-warning")
+    } else{
+        terminarBtn.disabled = true
+        terminarBtn.classList.remove("btn-warning")
+        desecharBtn.disabled = true
+        desecharBtn.classList.remove("btn-warning")
+    }
+}
 
 //
 alertaTexto()
