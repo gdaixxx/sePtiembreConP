@@ -10,7 +10,37 @@ const continuarBtn = document.getElementById("continuar")
 
 
 function censura(texto) {
-    const prohibidas = ["culo", "puto", "puta", "reputa", "semen", "caca", "cagada", "pelotudo", "pelotuda", "boludo", "boluda", "reputísima", "pito", "verga", "concha", "poronga", "chupapija", "petera", "putita", "ojete", "mierda", "trolo", "trola", "trolazo", "tragaleche", "waska", "wasca", "guasca", "guazca", "gay"]
+    const prohibidas = [
+        "culo", "culos",
+        "puto", "putos", 
+        "puta", "putas", 
+        "reputa", "reputas", 
+        "semen", 
+        "caca", "cacas", 
+        "cagada", "cagadas", 
+        "pelotudo", "pelotudos",
+        "pelotuda", "pelotudas",
+        "boludo", "boludos",
+        "boluda", "boludas",
+        "reputísima", "reputísimas",
+        "pito", "pitos", 
+        "verga", "vergas", 
+        "concha", "conchas", 
+        "poronga", "porongas", 
+        "chupapija", "chupapijas", 
+        "petero", "peteros",
+        "petera", "peteras", 
+        "putita", "putitas", 
+        "ojete", "ojetes", 
+        "mierda", "mierdas", 
+        "trolo", "trolos", 
+        "trola", "trolas", 
+        "trolazo", "trolazos", 
+        "tragaleche", "tragaleches", 
+        "waska", "wasca", "guasca", "guazca", 
+        "gay", "gays",
+        "pedófilo"
+    ]
     
     // Convertimos a minúsculas para que no esquiven el filtro con Mayúsculas
  
