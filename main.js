@@ -8,32 +8,99 @@ const form = document.getElementById("text-input")
 const continuarBtn = document.getElementById("continuar")
 
 
-function acumularVerso(event, autor = "Anónimo") {
-    event.preventDefault()
-    const verso = document.getElementById("nuevo-verso")
-    // !verso ? poema : poema += verso.value + " - " + autor + "\n"
-    if (!verso.value) {
-        alert("No se puede enviar un verso vacío")
-        return
-    } else{
-        poema += verso.value + "\n"
-        document.getElementById("ultimo-verso").hidden = false
-        //        poema += verso.value + " - " + autor + "\n"    
-    }
+
+function censura(texto) {
+    const prohibidas = ["culo", "puto", "puta", "reputa", "semen", "caca", "cagada", "pelotudo", "pelotuda", "boludo", "boluda", "reputísima", "pito", "verga", "concha", "poronga", "chupapija", "petera", "putita", "ojete", "mierda", "trolo", "trola", "trolazo", "tragaleche", "waska", "wasca", "guasca", "guazca", "gay"]
+    
+    // Convertimos a minúsculas para que no esquiven el filtro con Mayúsculas
+ 
+
+    const palabras = texto.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()¡?¿!"]/g, "").split(" ")
+    const resultado = palabras.some(palabra => prohibidas.includes(palabra))
+    // some() devuelve true si encuentra alguna prohibida, o false si no
+    return resultado
+}
+
+const reiniciarAlerta = () => {
+    const alertaTextoElemento = document.getElementById("alertas")
+    alertaTextoElemento.innerHTML = `Caracteres: <span id="contador-caracteres">0</span>/42`        
+}
+
+
+function guardarVersoExitoso(nuevoVerso){
+    poema += nuevoVerso + "\n"
+
     document.getElementById("poema-container").classList.remove("d-none")
-    verso.value = ""
+    document.getElementById("nuevo-verso").value = ""
+    
     const versos = poema.split("\n")
     versoAnterior = versos[versos.length -2]
+    
     document.getElementById("ultimo-verso").innerText = versoAnterior
     document.getElementById("titulo-seccion").textContent = "VERSO ANTERIOR..."
-    //document.getElementById("sonido-aldeano").play()
-
-        const alertaTextoElemento = document.getElementById("alertas")
-        alertaTextoElemento.innerHTML = `Caracteres: <span id="contador-caracteres">0</span>/42`
-        
+    
+    reiniciarAlerta()
     reproducirSonidoAzar()
     habilitarTerminar() 
 
+}
+
+function procesarVersoConAdvertencia(verso) {
+
+    const errorSound = new Audio('./assets/sounds/error.mp3')
+    const dignidadSound = new Audio('./assets/sounds/you-have-no-dignity.mp3')
+    errorSound.play()
+
+    Swal.fire({
+        title: "¡Santos cielos! ¡Recórcholis!",
+        text: "Ingresaste una palabra que puede tener connotaciones ofensivas o discriminatorias. ¿Deseás continuar de todos modos?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#474d54",
+        cancelButtonColor: "#0b486b",
+        confirmButtonText: "Sí, continuar 💩",
+        cancelButtonText: "Perdón, corregir 😳",
+        reverseButtons: true,
+        focusCancel: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Si el usuario insiste, llamamos a la función que ya tenías
+            dignidadSound.playbackRate = 1.8
+            dignidadSound.play()
+            setTimeout(() => {guardarVersoExitoso(verso)}, "1300");
+            
+        }
+    })
+}
+
+function errorMsgNoHayVerso (){
+    Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "¡La caja de texto está vacía!",
+  confirmButtonColor: "#0b486b",
+});
+}
+
+
+
+function acumularVerso(event, autor = "Anónimo") {
+    event.preventDefault()
+
+    const verso = document.getElementById("nuevo-verso")
+    
+    if (!verso.value) {
+        errorMsgNoHayVerso()
+        return
+    }
+
+    // Pasamos el valor del input a la función de censura
+    if (censura(verso.value)) {
+        procesarVersoConAdvertencia(verso.value)
+    } else {
+        // Si no hay censura, pasa directo
+        guardarVersoExitoso(verso.value)
+    }
 }
 
 const terminarPoema = () => {
@@ -218,14 +285,17 @@ LA FIGURA DEL AUTOR.
 
 // VALIDACION 
 
+document.addEventListener("DOMContentLoaded", () => {
+    continuarBtn.disabled = true
+})
+
 function alertaTexto () {
 
     // const contador = document.getElementById("contador-de-caracteres")
     const alertaTextoElemento = document.getElementById("alertas")
 
     txt.addEventListener("input", (event) => {
-        const longitud = txt.value.length
-        // contador.innerText = longitud
+        const longitud = txt.value.trim().length
 
         if(longitud > 42){
             txt.classList.add("border-warning", "shadow-none")
@@ -347,6 +417,65 @@ function habilitarTerminar() {
         desecharBtn.classList.remove("btn-warning")
     }
 }
+
+// Modal de incio
+document.addEventListener("DOMContentLoaded", function() {
+
+  const modalContainer = document.createElement("div")
+  modalContainer.id = "modal-container"
+
+  modalContainer.innerHTML = `
+    <div id="modal-box">
+      <h2 style="text-align:center; padding-bottom:0.5em">¿Primera vez por acá?</h2>
+
+      <p>Te contamos cómo funciona este cadáver tecno-exquisito. </p>
+
+      <p>Primero lo primero: no se juega en solitario. Necesitás a otras personas. Por turnos, cada participante se acerca a la pantalla y escribe lo primero que le venga a la mente: onomatopeyas, palabras, frases... <strong>No hay que pensar demasiado</strong>: la gracia es dejarse llevar y renunciar a la coherencia.</p>
+
+      <p>Podés leer lo que escribió quien pasó antes, pero <strong>solo eso</strong>. Lo que ingreses será un verso dentro de un poema colectivo.</p>
+<hr>
+      <p><strong>Reglas básicas:</strong><br>
+      🧠 No pensar de más<br>
+      🫣 No espiar a tus compañerxs mientras escriben<br>
+      💩 Evitar lenguaje soez y expresiones discriminatorias<br>
+      🖨️ Cuando todxs hayan participado, finalizá el poema e imprimí una copia</p>
+    <hr>
+      <p> ¿Estás solx? No importa. Podés fingir demencia y probar igual escribir de corrido, un verso atrás del otro, sin pensar demasiado y probar.</p>
+      <p>¡El resultado te sorprenderá! 🧟</p>
+    <div id=cerrar-modal-btn-container>
+      <button id="cerrar-modal">Entendido</button></div>
+    </div>
+  `
+
+  document.body.appendChild(modalContainer)
+
+  requestAnimationFrame(() => {
+    modalContainer.style.opacity = "1"
+    document.getElementById("modal-box").style.transform = "scale(1)"
+  })
+
+  document.getElementById("cerrar-modal").addEventListener("click", () => {
+    modalContainer.style.opacity = "0"
+    document.getElementById("modal-box").style.transform = "scale(0.9)"
+    setTimeout(() => modalContainer.remove(), 300)
+  })
+
+})
+
+// Ocultar el btn info si aparece el teclado en la pantalla del celular
+window.visualViewport.addEventListener("resize", () => {
+  const btn = document.getElementById("btn-info")
+
+  // Si el viewport se achicó mucho, asumimos que apareció el teclado
+  if (window.visualViewport.height < window.innerHeight * 0.75) {
+    btn.style.display = "none"
+  } else {
+    btn.style.display = "flex"
+  }
+})
+
+
+
 
 //
 alertaTexto()
