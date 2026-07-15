@@ -238,3 +238,15 @@ footer{
   align-items: center;
   justify-content: center;
 }
+
+/* Glow del btn */
+.btn-glow {
+    animation: glowPulse 1.8s ease-in-out infinite;
+    box-shadow: 0 0 12px #ecd078aa;
+}
+
+@keyframes glowPulse {
+    0%   { box-shadow: 0 0 4px #ecd07855; }
+    50%  { box-shadow: 0 0 18px #ecd078cc; }
+    100% { box-shadow: 0 0 4px #ecd07855; }
+}

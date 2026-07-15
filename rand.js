@@ -71,6 +71,22 @@ const randomPoemHandler = () => {
 // Eventlisteners
 document.addEventListener("DOMContentLoaded", cargarDatos)
 
+// document.addEventListener("DOMContentLoaded", () => {
+//     const btn = document.getElementById("btn-random-poem")
+
+//     // Si el usuario nunca hizo clic → activar glow
+//     if (!localStorage.getItem("poemaRandomClicked")) {
+//         btn.classList.add("btn-glow")
+//     }
+
+//     // Cuando hace clic → desactivar glow y guardar estado
+//     btn.addEventListener("click", () => {
+//         btn.classList.remove("btn-glow")
+//         localStorage.setItem("poemaRandomClicked", "true")
+//     })
+// })
+
+
 // Tecla P o botón 5 del numpad cambia poema
 
 window.addEventListener("keydown", checkKeyPressed, false);
