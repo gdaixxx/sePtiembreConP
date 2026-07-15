@@ -16,7 +16,7 @@ function censura(texto) {
         "puta", "putas", 
         "reputa", "reputas", 
         "semen", 
-        "caca", "cacas", 
+        "caca", "cacas", "sorete", "soretes",
         "cagada", "cagadas", 
         "pelotudo", "pelotudos",
         "pelotuda", "pelotudas",
@@ -82,7 +82,7 @@ function procesarVersoConAdvertencia(verso) {
     errorSound.play()
 
     Swal.fire({
-        title: "¡Santos cielos! ¡Recórcholis!",
+        title: "¡Santos cielos! ¡Recórcholis! ¡Rayos y centellas!",
         text: "Ingresaste una palabra que puede tener connotaciones ofensivas o discriminatorias. ¿Deseás continuar de todos modos?",
         icon: "warning",
         showCancelButton: true,
@@ -296,7 +296,7 @@ const plantillaCadaver = (texto) => {
 ***  SePtiembre con P de Poesía 2026 ***
 ------------------------------------------
 Fecha: ${insertarFecha()}
-IVA EXENTO - Escuela Sara Bartfeld
+IVA EXENTO - Escuela Sara Bartfeld Rietti
 ID poema: ${generarCodigoPoema()}
 ------------------------------------------
 ${texto}
@@ -507,5 +507,16 @@ window.visualViewport.addEventListener("resize", () => {
 
 
 
+
+
+
+
+
+
+
+
+
 //
 alertaTexto()
+
+

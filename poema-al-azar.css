@@ -1,0 +1,240 @@
+*{
+    font-family: "Quicksand", sans-serif;
+    box-sizing: border-box;   
+}
+
+
+body{
+    background-color:#141414;
+      min-height: 100vh; 
+    margin: 0;
+     display: flex;
+    flex-direction: column;
+}
+
+
+.poema{
+  padding: 2em;
+  margin: 1em;
+  border-radius: 8px;
+  background-color: hsl(202, 81%, 23%, 0.4);
+  color: #ecd078;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.titulo-poema{
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.4em;
+}
+
+.autoria-poema{
+    letter-spacing: 6px;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.texto-poema{
+     line-height: 1.6;
+}
+
+.autoria-poema::after {
+    content: "";
+    display: block;
+    width: 80%;
+    margin: 1em auto 0;
+    height: 4px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        #ECD078,
+        transparent
+    );
+}
+
+
+/* Overlay principal */
+.spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+}
+
+.spinner.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Fondo animado */
+.wave-bg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.wave-bg .wave {
+  position: absolute;
+  inset: 0;
+  background: #4973ff;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+.wave-bg .wave span {
+  position: absolute;
+  width: 325vh;
+  height: 325vh;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  background: #000;
+}
+
+.wave-bg .wave span:nth-child(1) {
+  border-radius: 45%;
+  background: rgba(20, 20, 20, 1);
+  animation: animate 5s linear infinite;
+}
+
+.wave-bg .wave span:nth-child(2) {
+  border-radius: 40%;
+  background: rgba(20, 20, 20, 0.5);
+  animation: animate 10s linear infinite;
+}
+
+.wave-bg .wave span:nth-child(3) {
+  border-radius: 42.5%;
+  background: rgba(20, 20, 20, 0.5);
+  animation: animate 15s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
+}
+
+/* Contenido centrado */
+.content-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.loading-text {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* ⭐ FUNDIDO FINAL */
+.spinner.fadeout {
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+
+/* Fondo */
+
+#fireflies {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* detrás de todo */
+  background: #071426; /* azul profundo */
+}
+
+/* header */
+
+.fondo,
+.fondo:before{
+  --s: 56px; /* control the size */
+  --g: 10px; /* control the gap */
+  --c: #ECD078; /* first color */
+  
+  --_l: #0000 calc(33% - .866*var(--g)),var(--c) calc(33.2% - .866*var(--g)) 33%,#0000 34%;
+  background:
+    repeating-linear-gradient(var(--c) 0 var(--g), #0000 0 50%)
+     0 calc(.866*var(--s) - var(--g)/2),
+    conic-gradient(from -150deg at var(--g) 50%,var(--c) 120deg,#0000 0),
+    linear-gradient(-120deg,var(--_l)),linear-gradient( -60deg,var(--_l))
+    #0B486B; /* second color */
+  background-size: var(--s) calc(3.466*var(--s));
+  animation: p infinite 2s linear;
+}
+fondo:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  -webkit-mask: 
+    linear-gradient(#000 50%,#0000 0) 
+    0 calc(.866*var(--s))/100% calc(3.466*var(--s));
+  animation-direction: reverse;
+}
+@keyframes p {
+  to {
+    background-position-x: calc(-1*var(--s));
+  }
+}
+
+
+/* Titulo */
+.titulo{
+    color: #ECD078;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    margin: 1.2em;
+}
+
+/* Pie */
+footer{
+    margin-top: auto;     /* Esto empuja hacia abajo el footer en un body que funciona como flex */
+    text-align: center;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+    padding: 0.75rem 0;
+    color: #555;
+    background: #f2f2f2;    
+    opacity: 0.8;
+
+}
+
+
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+.btn.rounded-circle {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
