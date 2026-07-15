@@ -63,6 +63,8 @@ const randomPoemHandler = () => {
     autoria = poemaRandom.Autoría
     titulo  = poemaRandom.Título
     dato = poemaRandom.Dato
+    const audio = new Audio("./assets/sounds/send-sound/coin.mp3")
+    audio.play()
     
 }
 
@@ -153,7 +155,8 @@ const imprimirPoema = () => {
         <div class="ticket-copia">${ticketFinal}</div>
         </body></html>
     `) 
-    reproducirSonido("./assets/sounds/ring.mp3", 1, 1)
+    const audio = new Audio("./assets/sounds/ring.mp3")
+    audio.play()
     ventanaImpresion.document.close()
     ventanaImpresion.print()
 }
@@ -311,12 +314,6 @@ Conocé más entrando a este QR:
 [Espacio para código QR]
 ------------------------------------------`;
 }
-
-
-// Imprimir no debe ejecutarse si no hay poema
-// Debe haber animación mientras se espera el resultadod e fetch
-// sonido "cling"
-
 
 
 function ocultarSpinner(){
