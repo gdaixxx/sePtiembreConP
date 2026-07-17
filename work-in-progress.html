@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Zona en construcción</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0b1b2b;
+      color: #ECD078;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      text-align: center;
+    }
+    .contenedor {
+      max-width: 480px;
+      padding: 2rem;
+    }
+    svg {
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      margin: 0 0 .5rem;
+      font-size: 1.8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    p {
+      margin: 0;
+      font-size: 1rem;
+      opacity: .85;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <!-- SVG alusivo: columna romana en obra -->
+    <svg width="140" height="140" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <!-- fondo círculo -->
+      <circle cx="50" cy="50" r="46" stroke="#ECD078" stroke-width="3" />
+      <!-- base -->
+      <rect x="25" y="68" width="50" height="6" fill="#ECD078" />
+      <!-- fuste de columna -->
+      <rect x="38" y="36" width="24" height="30" fill="none" stroke="#ECD078" stroke-width="3" />
+      <!-- estrías -->
+      <line x1="42" y1="38" x2="42" y2="64" stroke="#ECD078" stroke-width="1.5" />
+      <line x1="50" y1="38" x2="50" y2="64" stroke="#ECD078" stroke-width="1.5" />
+      <line x1="58" y1="38" x2="58" y2="64" stroke="#ECD078" stroke-width="1.5" />
+      <!-- capitel simple -->
+      <rect x="34" y="30" width="32" height="5" fill="#ECD078" />
+      <!-- cinta de obra -->
+      <path d="M20 55 L80 40" stroke="#ECD078" stroke-width="3" stroke-linecap="round" />
+      <path d="M22 60 L82 45" stroke="#ECD078" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 4" />
+    </svg>
+
+    <h1>Zona en construcción</h1>
+    <p>Roma no se hizo en un día.</p>
+  </div>
+</body>
+</html>

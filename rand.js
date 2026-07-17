@@ -73,21 +73,6 @@ const randomPoemHandler = () => {
 // Eventlisteners
 document.addEventListener("DOMContentLoaded", cargarDatos)
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     const btn = document.getElementById("btn-random-poem")
-
-//     // Si el usuario nunca hizo clic → activar glow
-//     if (!localStorage.getItem("poemaRandomClicked")) {
-//         btn.classList.add("btn-glow")
-//     }
-
-//     // Cuando hace clic → desactivar glow y guardar estado
-//     btn.addEventListener("click", () => {
-//         btn.classList.remove("btn-glow")
-//         localStorage.setItem("poemaRandomClicked", "true")
-//     })
-// })
-
 
 // Tecla P o botón 5 del numpad cambia poema
 
@@ -135,10 +120,11 @@ const imprimirPoema = () => {
             <title>Imprimir Poema std::rand()</title>
             <style>
                 body {
-                    font-family: 'Courier New', Courier, monospace;
+                    font-family: 'FontA2x2', 'FontA', consolas;
                     font-size: 14px;
-                    padding: 15px;
-                    width: 340px; 
+                    line-height: 1.2;
+                    // padding: 15px;
+                    width: 97%; 
                 }
                 .ticket-copia { 
                     white-space: pre-line; 
@@ -152,8 +138,17 @@ const imprimirPoema = () => {
             </style>
         </head>
         <body>
+        
+        <div style="text-align: center">
+        <img src="./assets/images/versos herrantes - PNG.png" width="200px" alt="">
+        </div>
         <div class="ticket-copia">${ticketFinal}</div>
-        </body></html>
+        <div style="text-align: center; margin-bottom:1em">
+        <strong>Conocé más factos entrando a este QR:</strong>
+            <img src="./assets/images/QR/QR-cartilla.png" alt="QR" style="max-width: 200px; height: auto;">
+            </div>
+        </body>
+        </html>
     `) 
     const audio = new Audio("./assets/sounds/ring.mp3")
     audio.play()
@@ -307,13 +302,49 @@ ${texto}
 \u00A0\u00A0con las manos.
 ------------------------------------------
 
-❯❯ ${dato}
+❯❯ ${dato} ❮❮
 
-Conocé más entrando a este QR:
-
-[Espacio para código QR]
-------------------------------------------`;
+------------------------------------------
+`;
 }
+
+
+
+
+const plantillaVieja = (texto, titulo, autoria, dato) => {
+    return `
+------------------------------------------
+***  SePtiembre con P de Poesía 2026 ***
+------------------------------------------
+Escuela Sara Bartfeld Rietti
+IVA EXENTO - Ingresos Brutos: 67676767
+Inicio de actividades: 12/04/2021
+A LECTORX FINAL
+------------------------------------------
+Factura falsa C N°: 0002-${formatear8(obtenerNumeroFactura())}
+Fecha: ${insertarFecha()}
+------------------------------------------
+${lineaConPrecio(titulo)}
+
+   \u00A0 ${autoria}
+   \u00A0 SKU: ${generarCodigoPoema()}
+__________________________________________
+
+${texto}
+
+------------------------------------------
+* El valor de lo poético se mide con la 
+\u00A0\u00A0invisible vara de lo intangible; tan    
+\u00A0\u00A0incalculable es como pesar el silencio  
+\u00A0\u00A0con las manos.
+------------------------------------------
+
+❯❯ ${dato} ❮❮
+
+------------------------------------------
+`;
+}
+
 
 
 function ocultarSpinner(){

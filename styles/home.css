@@ -58,8 +58,26 @@ main{
 }
 
 /* Iconos */
+/* Asegura que el contenedor no limite el tamaño */
 .icono-grande {
-    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 125px;  /* El tamaño deseado para el contenedor */
+    height: 125px;
+    margin: 0 auto; /* Centra el contenedor en la tarjeta */
+}
+
+/* Fuerza a todos los SVG internos a medir lo mismo */
+.icono-grande svg {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 125px;  /* Cambia este valor si quieres que sean más grandes o chicos */
+    max-height: 125px;
+}
+
+#mas-info{
+    padding: 18px;
 }
 
 /* Títulos de tarjetas */
