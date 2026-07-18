@@ -250,3 +250,13 @@ footer{
     50%  { box-shadow: 0 0 18px #ecd078cc; }
     100% { box-shadow: 0 0 4px #ecd07855; }
 }
+
+/* Tooltips */
+.custom-tooltip {
+  --bs-tooltip-bg: #ecd078cc;
+  --bs-tooltip-color: #141414;
+}
+
+.home{
+  align-content: center;
+}

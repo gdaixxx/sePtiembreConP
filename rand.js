@@ -72,6 +72,12 @@ const randomPoemHandler = () => {
 
 // Eventlisteners
 document.addEventListener("DOMContentLoaded", cargarDatos)
+window.addEventListener("load", function () {
+  if (window.innerWidth >= 768) {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    tooltipTriggerList.forEach(el => new bootstrap.Tooltip(el));
+  }
+})
 
 
 // Tecla P o botón 5 del numpad cambia poema
@@ -277,8 +283,6 @@ const formatear8 = (num) => num.toString().padStart(8, "0")
 const plantilla = (texto, titulo, autoria, dato) => {
     return `
 ------------------------------------------
-***  SePtiembre con P de Poesía 2026 ***
-------------------------------------------
 Escuela Sara Bartfeld Rietti
 IVA EXENTO - Ingresos Brutos: 67676767
 Inicio de actividades: 12/04/2021
@@ -452,3 +456,4 @@ function animate() {
 
 
 animate()
+
