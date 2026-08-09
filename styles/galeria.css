@@ -1,0 +1,634 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    background-color: #0b1b2b;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Contenedor principal de tarjetas */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5em;
+    margin: 1.5em;
+        padding-bottom: 2em ;
+}
+
+/* Tarjeta base: Fondo unificado para todas */
+.card {
+    position: relative; /* Para permitir badges posicionados en la esquina */
+    padding: 2em 1.5em;
+    text-align: center;
+    background: linear-gradient(135deg, #29323c 0%, #485563 100%);
+    color: white;
+    font-family: "Quicksand", sans-serif;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- BADGES (Etiquetas opcionales en la esquina superior derecha) --- */
+.badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.3em 0.8em;
+    border-radius: 20px;
+}
+
+.badge-premio {
+    background-color: rgba(250, 204, 21, 0.2);
+    color: #facc15;
+    border: 1px solid rgba(250, 204, 21, 0.4);
+}
+
+.badge-mencion {
+    background-color: rgba(226, 232, 240, 0.15);
+    color: #e2e8f0;
+    border: 1px solid rgba(226, 232, 240, 0.3);
+}
+
+/* --- ICONOS CIRCULARES --- */
+.icono {
+    aspect-ratio: 1 / 1;
+    min-width: 80px;
+    max-width: 180px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    flex-shrink: 0;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+/* 1. Participante */
+.icono-estandar {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    border: 1px solid rgba(241, 245, 249, 0.3);
+}
+
+/* 2. Premio: Dorado resplandeciente con trofeo */
+.icono-premio {
+    background-color: rgba(250, 204, 21, 0.15);
+    color: #facc15;
+    border: 1px solid rgba(250, 204, 21, 0.4);
+    box-shadow: 0 0 15px rgba(250, 204, 21, 0.2);
+}
+
+/* 3. Mención: Plateado/brillante con estrella o medalla */
+.icono-mencion {
+    background-color: rgba(241, 245, 249, 0.15);
+    color: #f1f5f9;
+    border: 1px solid rgba(241, 245, 249, 0.3);
+    box-shadow: 0 0 12px rgba(241, 245, 249, 0.15);
+}
+
+/* --- INTERIOR DE LA CARD --- */
+.titulo {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 0.6em;
+    margin-bottom: 0.5em;
+    color: #ffffff;
+    width: 100%;
+}
+
+.titulo::after {
+    content: "";
+    display: block;
+    width: 40%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    margin: 0.6em auto 0 auto;
+    border-radius: 2px;
+}
+
+.nombre {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    margin-top: auto; /* Empuja el autor al final si la card crece */
+    padding-top: 0.5em;
+}
+
+.nombre-fantasia {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+    color: #f8fafc;
+}
+
+.nombre-real {
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+.nombre-real:not(:empty)::before {
+    content: "[";
+}
+
+.nombre-real:not(:empty)::after {
+    content: "]";
+}
+
+/* 1. Definición de la animación de destello */
+@keyframes destello {
+    0%, 100% {
+        box-shadow: 0 0 8px rgba(250, 204, 21, 0.2);
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        /* En el punto medio, el brillo se expande y se hace más intenso */
+        box-shadow: 0 0 22px rgba(250, 204, 21, 0.7);
+        transform: scale(1.05);
+        opacity: 1;
+    }
+}
+
+/* Destello para Mención (en tonos plateados/blancos) */
+@keyframes destello-mencion {
+    0%, 100% {
+        box-shadow: 0 0 6px rgba(241, 245, 249, 0.15);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 18px rgba(241, 245, 249, 0.5);
+        transform: scale(1.04);
+    }
+}
+
+/* 2. Aplicación a la copa de Premio (Destello constante y suave) */
+.icono-premio {
+    background-color: rgba(254, 240, 138, 0.35);
+    /* background-color: rgba(250, 204, 21, 0.15); */
+    color: #facc15;
+    border: 1px solid rgba(250, 204, 21, 0.4);
+    
+    /* Nombre de la animación, duración, ritmo y repetición infinita */
+    animation: destello 2.5s ease-in-out infinite;
+}
+
+/* 3. Aplicación a la Mención Especial */
+.icono-mencion {
+    background-color: rgba(245, 247, 255, 0.35);
+    /* background-color: rgba(241, 245, 249, 0.15); */
+    color: #f1f5f9;
+    border: 1px solid rgba(241, 245, 249, 0.3);
+    
+    animation: destello-mencion 3s ease-in-out infinite;
+}
+
+
+.small-icon-premio::after {
+    content: "\F5E7";
+    font-family: "bootstrap-icons";
+    font-size: 18px;
+    color: rgb(143, 98, 0);
+    background-color: #ffc107;
+    border-radius: 50%;
+    display: inline-block;
+    padding: 9px; /* controla el tamaño del círculo */
+    line-height: 1; /* evita que se estire verticalmente */
+    margin-left: 0.5em;
+    animation: destello 2.5s ease-in-out infinite;
+}
+
+
+.small-icon-mencion::after {
+    content: "\F154";
+    font-family: "bootstrap-icons";
+    font-size: 18px;
+    color: white;
+    background-color: #777e89;
+    border-radius: 50%;
+    display: inline-block;
+    padding: 9px; /* controla el tamaño del círculo */
+    line-height: 1; /* evita que se estire verticalmente */
+    margin-left: 0.5em;
+    animation: destello-mencion 3s ease-in-out infinite;
+}
+
+/*  */
+
+/* --- LOADER FULLSCREEN --- */
+
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+/* Estado oculto tras la carga */
+.loader-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Fondo animado del SaraVerso (Portal Cósmico) */
+.loader-bg-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(125deg, #0b1b2b, #1a0b2e, #2b0b1e, #0b1b2b);
+  background-size: 400% 400%;
+  animation: fondoSaraVerso 8s ease infinite;
+  z-index: 1;
+}
+
+@keyframes fondoSaraVerso {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Tarjeta central flotante (Glassmorphism) */
+.loader-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 3em 2.5em;
+  background: rgba(11, 27, 43, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(123, 44, 191, 0.3);
+  font-family: "Quicksand", sans-serif;
+  color: white;
+}
+
+/* --- ANIMACIÓN PLANETA + ÓRBITAS 3D --- */
+.universo-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1.5em auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 600px;
+}
+
+/* Planeta Central con degradado Galáctico */
+.planeta-sara {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #38bdf8, #a855f7, #111827);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.6), inset -2px -2px 6px rgba(0, 0, 0, 0.6);
+  animation: flotarPlaneta 3s ease-in-out infinite alternate;
+}
+
+/* Base para los Anillos Orbitales */
+.anillo-orbital {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border-style: solid;
+}
+
+/* Anillo 1: Violeta Neón */
+.anillo-orbital.violeta {
+  border-width: 2px;
+  border-color: rgba(168, 85, 247, 0.8);
+  border-top-color: transparent;
+  transform: rotateX(70deg) rotateY(20deg);
+  animation: orbitar 2.2s linear infinite;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.5);
+}
+
+/* Anillo 2: Cian Neón */
+.anillo-orbital.cian {
+  border-width: 2px;
+  border-color: rgba(56, 189, 248, 0.8);
+  border-bottom-color: transparent;
+  transform: rotateX(70deg) rotateY(-40deg);
+  animation: orbitar 3.2s linear infinite reverse;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+/* Movimientos de las órbitas y el planeta */
+@keyframes orbitar {
+  0% { transform: rotateX(70deg) rotate(0deg); }
+  100% { transform: rotateX(70deg) rotate(360deg); }
+}
+
+@keyframes flotarPlaneta {
+  0% { transform: translateY(-5px); }
+  100% { transform: translateY(5px); }
+}
+
+/* Textos del Loader */
+.loader-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #38bdf8, #a855f7, #f43f5e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.4em;
+}
+
+.loader-subtext {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+
+.loader-overlay.fadeout {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2s ease, visibility 2s ease;
+}
+
+
+.fondo,
+.fondo:before{
+  --s: 56px; /* control the size */
+  --g: 10px; /* control the gap */
+  --c: #ECD078; /* first color */
+  
+  --_l: #0000 calc(33% - .866*var(--g)),var(--c) calc(33.2% - .866*var(--g)) 33%,#0000 34%;
+  background:
+    repeating-linear-gradient(var(--c) 0 var(--g), #0000 0 50%)
+     0 calc(.866*var(--s) - var(--g)/2),
+    conic-gradient(from -150deg at var(--g) 50%,var(--c) 120deg,#0000 0),
+    linear-gradient(-120deg,var(--_l)),linear-gradient( -60deg,var(--_l))
+    #0B486B; /* second color */
+  background-size: var(--s) calc(3.466*var(--s));
+  animation: p infinite 2s linear;
+}
+fondo:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  -webkit-mask: 
+    linear-gradient(#000 50%,#0000 0) 
+    0 calc(.866*var(--s))/100% calc(3.466*var(--s));
+  animation-direction: reverse;
+}
+
+@keyframes p {
+  to {
+    background-position-x: calc(-1*var(--s));
+  }
+}
+
+
+.titulo-principal {
+  color: #ECD078;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;             
+  /* max-width: fit-content; */
+  width: 100%;
+  justify-content: center;
+  margin: 2.5em auto;
+  padding-top: 2em;
+}
+
+.titulo-principal h2 {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;  
+}
+
+/* Pie */
+footer{
+    margin-top: auto;     /* Esto empuja hacia abajo el footer en un body que funciona como flex */
+    text-align: center;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+    padding: 0.75rem 0;
+    color: #555;
+    background: #f2f2f2;    
+    opacity: 0.8;
+
+}
+
+h2{
+    margin-top: 0;
+	margin-bottom: .5rem;
+	font-weight: 500;
+	line-height: 1.2;
+	font-family: "Quicksand";
+}
+
+
+
+/* Fuerza a todos los SVG internos a medir lo mismo */
+.icono-grande svg {
+    width: 100% !important;
+    height: 100% !important;
+    /* max-width: 125px; */
+    max-height: 125px;
+}
+
+.tit2{
+font-family: 'Quicksand', sans-serif;
+  font-size: 3.2rem;       /* Tamaño grande destacado */
+  font-weight: 900;        /* Negrita marcada y redondeada */
+  color: #ECD078;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.intro-texto {
+  font-family: 'Quicksand', sans-serif;
+  color: #94a3b8; /* Mismo gris tenue del subtexto del loader */
+  font-size: 1.1rem;
+  max-width: 650px;
+  margin: 0 auto 2.5em auto; /* Centrado con espacio inferior */
+  text-align: center;
+  line-height: 1.6;
+}
+
+.intro-texto {
+  font-family: 'Quicksand', sans-serif;
+  color: #cbd5e1; /* Gris claro de alto contraste */
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.7;
+  max-width: 750px;
+  margin: 2em auto 3em auto;
+  text-align: center;
+  padding: 0 1.5em;
+}
+
+
+.intro-texto strong, 
+.intro-texto .highlight {
+  color: #ecd078;
+  font-weight: 700;
+}
+
+
+@media (max-width: 600px) {
+  .titulo-principal {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .icono-grande {
+    margin: 0 auto;
+  }
+
+  .titulo-principal h2 {
+    text-align: center;
+  }
+}
+
+/* Loader prosa */
+
+.loader-kiwi {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenedor Fullscreen */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0b1b2b;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+/* Estado de salida */
+.loader-overlay.fadeout {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 2s ease-in-out, visibility 2s ease-in-out;
+}
+
+/* Tarjeta flotante glassmorphism */
+.loader-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2.5em 3em;
+  background: rgba(11, 27, 43, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 0 35px rgba(236, 208, 120, 0.15);
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* Contenedor del Kiwi */
+.loader-kiwi {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.2em auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Animación de flotación suave */
+  animation: kiwiFlotar 3s ease-in-out infinite alternate;
+}
+
+/* Estilos del SVG */
+.kiwi-svg {
+  width: 100%;
+  height: 100%;
+  /* Filtro de resplandor dorado (Glow) */
+  filter: drop-shadow(0 0 8px rgba(236, 208, 120, 0.5));
+  animation: kiwiGlow 2s ease-in-out infinite alternate;
+}
+
+/* Opcional: El ojo/pequeño detalle en el segundo path parpadea */
+.kiwi-svg path:last-child {
+  animation: kiwiOjo 2.5s ease-in-out infinite;
+}
+
+/* Keyframes de las animaciones */
+@keyframes kiwiFlotar {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-12px) rotate(-3deg);
+  }
+}
+
+@keyframes kiwiGlow {
+  0% {
+    filter: drop-shadow(0 0 6px rgba(236, 208, 120, 0.3));
+    opacity: 0.85;
+  }
+  100% {
+    filter: drop-shadow(0 0 16px rgba(236, 208, 120, 0.8));
+    opacity: 1;
+  }
+}
+
+@keyframes kiwiOjo {
+  0%, 90%, 100% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.2;
+  }
+}
+
+/* Textos del Loader */
+.loader-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #ECD078;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.5px;
+}
+
+.loader-subtext {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  font-weight: 300;
+}

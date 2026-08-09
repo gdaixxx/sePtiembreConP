@@ -76,6 +76,7 @@ main{
     max-height: 125px;
 }
 
+
 #mas-info{
     padding: 18px;
 }
@@ -164,7 +165,7 @@ footer{
     font-style: italic;
     text-shadow: 0 0 6px #ecd07833;
     position: relative;
-}
+/* } */
 
 .titulo-index-secundario::after {
     content: "";
@@ -173,4 +174,5 @@ footer{
     height: 3px;
     margin: 0.4em auto 0;
     background: linear-gradient(to right, transparent, #ECD07888, transparent);
-} */
+}
+

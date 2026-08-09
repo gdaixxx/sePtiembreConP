@@ -1,0 +1,117 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+
+body{
+    background-color: #0b1b2b;
+    color: white;
+}
+
+.card-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1em;
+    margin: 1em;
+}
+
+.card{
+    /* width: 250px; */
+    /* margin: 1em; */
+    display: inline-block;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    text-align: center;
+    background: linear-gradient(90deg, #485563 0%, #29323c 100%);
+    color: white;
+    font-family: "Quicksand", sans-serif;
+    min-height: 200px;
+}
+
+/* Iconos */
+.icono{
+    aspect-ratio: 1 /1;
+    min-width: 80px;
+    max-width: 180px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    flex-shrink: 0;
+    border-radius: 50%;
+    /* padding: 0.8em; */
+}
+
+.icono-estandar{
+
+        background-color: rgb(138, 144, 153, 0.4);
+    color: #d3dcea;
+
+}
+.icono-premio{
+    background-color: rgba(254, 240, 138, 0.35);
+    color: #ca8a04;
+}
+
+.icono-mencion{
+    background-color: rgba(245, 247, 255, 0.35);
+}
+
+/* Variantes de card */
+.premio{
+    background: linear-gradient(135deg, #ff8e00 0%, #ffd700 100%);
+    color: 1e293b;
+}
+
+.mencion{
+    background: linear-gradient(90deg, #2c3e50 0%, #4ca1af 100%);
+}
+
+/* Interior de la card */
+.titulo{
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    margin-top:0.6em
+}
+
+.titulo::after {
+    content: "";
+    display: block;
+    width: 40%;                 
+    height: 2px;                
+    background: rgba(255, 255, 255, 0.25);
+    margin: 0.6em auto 0 auto;  
+    border-radius: 2px;
+}
+
+.nombre{
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;    
+}
+
+.nombre-fantasia{
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1.4rem;
+    text-shadow: #2c3e50 1px 0 10px;;
+}
+
+.nombre-real{
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+
+.nombre-real:not(:empty)::after{
+    content: "]";
+}
+
+.nombre-real:not(:empty)::before{
+    content: "[";
+}
+
+.mencion .nombre-fantasia{
+    text-shadow: none;
+}

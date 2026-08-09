@@ -69,7 +69,7 @@ const randomPoemHandler = () => {
 }
 
 
-
+ 
 // Eventlisteners
 document.addEventListener("DOMContentLoaded", cargarDatos)
 window.addEventListener("load", function () {
@@ -451,7 +451,6 @@ function animate() {
 
   requestAnimationFrame(animate);
 }
-
 
 
 
