@@ -223,8 +223,10 @@ const lineaConPrecio = (titulo, precio = "0*", ancho = 42) => {
 
 
 
-const imprimirPoema = () => {
+const imprimirPoema = (config) => {
     const poema = poemasDB[indiceActual]
+
+    if (config === "ticket"){
     const textoImprimible = normalizarTexto(poema.poema)
     const ticketFinal = plantilla(textoImprimible, poema.título, poema.seudónimo, poema.autoriza_nombre ? poema.nombre : "XXXXX", poema.extra)
     // const cantidadCopias = parseInt(document.getElementById("copias").value) || 1
@@ -252,6 +254,15 @@ const imprimirPoema = () => {
                     margin: 20px 0; 
                     text-align: center;
                 }
+
+                .pie{
+                    margin-bottom: 1em; 
+                    display: flex; 
+                    flex-direction: column; 
+                    align-items: center; 
+                    text-align: center;
+                    gap: 1em;
+                }
             </style>
         </head>
         <body>
@@ -260,10 +271,17 @@ const imprimirPoema = () => {
         <img src="./assets/images/versos herrantes - PNG.png" width="200px" alt="">
         </div>
         <div class="ticket-copia">${ticketFinal}</div>
-        <div style="text-align: center; margin-bottom:1em">
-        <strong>Conocé más factos entrando a este QR:</strong>
-            <img src="./assets/images/QR/QR-cartilla.png" alt="QR" style="max-width: 200px; height: auto;">
-            </div>
+                <div style="text-align: center">
+        <img src="./assets/images/encabezado-saraverso.png" width="200px" alt="">
+
+        </div>
+        <div class="pie">
+            <strong>Conocé otros poemas del Sara-verso entrando a este QR:</strong>
+            <img src="./assets/images/QR/QR-saraverso.png" 
+                alt="QR" 
+                style="max-width: 200px; height: auto;">
+        </div>
+        <div class="linea-corte"></div>
         </body>
         </html>
     `) 
@@ -271,6 +289,33 @@ const imprimirPoema = () => {
     audio.play()
     ventanaImpresion.document.close()
     ventanaImpresion.print()
+    } else if (config === "a4") {
+
+    const poema = poemasDB[indiceActual]
+    const htmlA4 = plantillaA4(
+        poema.poema,
+        poema.título,
+        poema.seudónimo,
+        poema.autoriza_nombre ? poema.nombre : "XXXXX",
+        poema.extra
+    )
+
+    const ventanaImpresion = window.open("", "_blank")
+
+    ventanaImpresion.document.write(`
+        <html>
+        <head>
+            <title>Imprimir A4</title>
+        </head>
+        <body>
+            ${htmlA4}
+        </body>
+        </html>
+    `)
+
+    ventanaImpresion.document.close()
+    ventanaImpresion.print()
+}
 }
 
 
@@ -301,6 +346,123 @@ ${texto}
 \u00A0\u00A0con las manos.
 ------------------------------------------
 ${reconocimiento}
+`;
+}
+
+
+const plantillaA4 = (texto, titulo, seudonimo, autoria, reconocimiento) => {
+    return `
+<div style="
+    font-family: 'Georgia', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    margin: 20px auto;        
+    width: 95%;           
+    color: #222;
+">
+
+    <!-- Encabezado PROSAPIA -->
+    <div style="text-align:center; margin-bottom: 20px;">
+        <img src="./assets/images/encabezado-saraverso.png" 
+             alt="Saraverso" 
+             style="width:240px; margin-bottom:15px;">
+    </div>
+
+    <!-- HR antes del título -->
+    <hr style="border: 0; border-top: 1px solid #999; margin: 25px 0;">
+
+    <!-- Título -->
+    <h1 style="
+        font-size: 32px;
+        margin: 0 0 10px 0;
+        text-align: center;
+        font-weight: bold;
+    ">
+        ${titulo}
+    </h1>
+
+    <!-- Autoría -->
+    <p style="
+        font-size: 18px;
+        margin: 0;
+        text-align: center;
+    ">
+        <strong>${seudonimo}</strong> 
+        <span style="color:#777;">[${autoria}]</span>
+    </p>
+
+    <!-- HR antes del cuerpo del texto -->
+    <hr style="border: 0; border-top: 1px solid #999; margin: 25px 0;">
+
+    <!-- Cuerpo del cuento -->
+    <div style="
+        text-align: justify;
+        font-size: 18px;
+    ">
+        ${texto
+            .split(/\n\s*\n/) // separa estrofas por líneas vacías
+            .map(estrofa => {
+
+                const versos = estrofa.split("\n")
+                    .map(verso => `
+                        <span style="display:block;">
+                            ${verso}
+                        </span>
+                    `)
+                    .join("");
+
+                return `
+                    <div style="
+                        text-align: justify;
+                        margin-bottom: 1.5em;
+                        text-indent: 2em;
+                    ">
+                        ${versos}
+                    </div>
+                `;
+            })
+            .join("")}
+
+    </div>
+
+    <div style="border-top: 1px solid #999; margin: 25px 0;"></div>
+
+    <!-- Reconocimiento -->
+    <p style="
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 30px;
+    ">
+        ${reconocimiento}
+    </p>
+
+    <!-- Pie con imagen de septiembre + QR -->
+    <div style="text-align:center; margin-top:30px;">
+        <img src="./assets/images/versos herrantes - PNG.png" 
+             alt="Septiembre con P de Poesía" 
+             style="width:240px; margin-bottom:20px;">
+
+        <p><strong>Escaneá este QR para explorar otros poemas de estudiantes de la ESBR:</strong></p>
+
+        <img src="./assets/images/QR/QR-saraverso.png" 
+             alt="QR" 
+             style="width:200px;">
+    </div>
+    <!-- Cita poética -->
+    <blockquote style="
+        font-style: italic;
+        color: #444;
+        border-left: 4px solid #ccc;
+        padding-left: 15px;
+        margin: 20px 0;
+        text-align: justify;
+    ">
+        El valor de lo poético se mide con la invisible vara de lo intangible;  
+        tan incalculable es como pesar el silencio con las manos.
+    </blockquote>
+
+</div>
 `;
 }
 
@@ -382,7 +544,7 @@ contenedor.addEventListener("click", (event) => {
     const index = card.dataset.index
     indiceActual = index 
     console.log(indiceActual)
-    poema = poemasDB[index]
+    const poema = poemasDB[index]
     abrirModal(poema)
 })
 

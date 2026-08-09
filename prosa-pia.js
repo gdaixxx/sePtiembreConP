@@ -252,10 +252,13 @@ function mezclar(array) {
 // IMPRIMIR CUENTO
 
 
-const imprimirPoema = () => {
+const imprimirPoema = (config) => {
+    
     const poema = poemasDB[indiceActual]
+
+    if (config === "ticket"){
+
     const ticketFinal = plantilla(poema.poema, poema.título, poema.seudónimo, poema.autoriza_nombre ? poema.nombre : "XXXXX", poema.extra)
-    // const cantidadCopias = parseInt(document.getElementById("copias").value) || 1
     
     const ventanaImpresion = window.open("", "_blank")
 
@@ -285,12 +288,15 @@ const imprimirPoema = () => {
         <body>
         
         <div style="text-align: center">
-        <img src="./assets/images/versos herrantes - PNG.png" width="200px" alt="">
+        <img src="./assets/images/encabezado-prosapia.png" width="200px" alt="">
         </div>
         <div class="ticket-copia">${ticketFinal}</div>
         <div style="text-align: center; margin-bottom:1em">
-        <strong>Conocé más factos entrando a este QR:</strong>
-            <img src="./assets/images/QR/QR-cartilla.png" alt="QR" style="max-width: 200px; height: auto;">
+        <hr>
+         <img src="./assets/images/versos herrantes - PNG.png" width="200px" alt="">
+          <hr>
+        <strong>Escaneá este QR para conocer el final de esta historia y explorar otras:</strong>
+            <img src="./assets/images/QR/QR-prosapia.png" alt="QR" style="max-width: 200px; height: auto;">
             </div>
         </body>
         </html>
@@ -299,34 +305,142 @@ const imprimirPoema = () => {
     audio.play()
     ventanaImpresion.document.close()
     ventanaImpresion.print()
+} else if (config === "a4") {
+
+    const poema = poemasDB[indiceActual]
+    const htmlA4 = plantillaA4(
+        poema.poema,
+        poema.título,
+        poema.seudónimo,
+        poema.autoriza_nombre ? poema.nombre : "XXXXX",
+        poema.extra
+    )
+
+    const ventanaImpresion = window.open("", "_blank")
+
+    ventanaImpresion.document.write(`
+        <html>
+        <head>
+            <title>Imprimir A4</title>
+        </head>
+        <body>
+            ${htmlA4}
+        </body>
+        </html>
+    `)
+
+    ventanaImpresion.document.close()
+    ventanaImpresion.print()
 }
 
+}
 
-const plantilla2 = (texto, titulo, seudonimo, autoria, reconocimiento) => {
+const plantillaA4 = (texto, titulo, seudonimo, autoria, reconocimiento) => {
     return `
-------------------------------------------
-Escuela Sara Bartfeld Rietti
-------------------------------------------
-${titulo}
-${seudonimo} [${autoria}]
-__________________________________________
+<div style="
+    font-family: 'Georgia', serif;
+    font-size: 17px;
+    line-height: 1.7;
+    margin: 20px auto;        
+    width: 95%;           
+    color: #222;
+">
 
-${texto}
+    <!-- Encabezado PROSAPIA -->
+    <div style="text-align:center; margin-bottom: 20px;">
+        <img src="./assets/images/encabezado-prosapia.png" 
+             alt="PROSAPIA" 
+             style="width:240px; margin-bottom:15px;">
+    </div>
 
-------------------------------------------
-* El valor de lo poético se mide con la 
-\u00A0\u00A0invisible vara de lo intangible; tan    
-\u00A0\u00A0incalculable es como pesar el silencio  
-\u00A0\u00A0con las manos.
-------------------------------------------
-${reconocimiento}
+    <!-- HR antes del título -->
+    <hr style="border: 0; border-top: 1px solid #999; margin: 25px 0;">
+
+    <!-- Título -->
+    <h1 style="
+        font-size: 32px;
+        margin: 0 0 10px 0;
+        text-align: center;
+        font-weight: bold;
+    ">
+        ${titulo}
+    </h1>
+
+    <!-- Autoría -->
+    <p style="
+        font-size: 18px;
+        margin: 0;
+        text-align: center;
+    ">
+        <strong>${seudonimo}</strong> 
+        <span style="color:#777;">[${autoria}]</span>
+    </p>
+
+    <!-- HR antes del cuerpo del texto -->
+    <hr style="border: 0; border-top: 1px solid #999; margin: 25px 0;">
+
+    <!-- Cuerpo del cuento -->
+    <div style="
+        text-align: justify;
+        font-size: 18px;
+    ">
+        ${texto
+            .split("\n")
+            .map(p => `
+                <p style="
+                    text-indent: 2em; 
+                    margin: 0 0 1em 0;
+                ">
+                    ${p}
+                </p>
+            `)
+            .join("")}
+    </div>
+
+    <div style="border-top: 1px solid #999; margin: 25px 0;"></div>
+
+    <!-- Reconocimiento -->
+    <p style="
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 30px;
+    ">
+        ${reconocimiento}
+    </p>
+
+    <!-- Pie con imagen de septiembre + QR -->
+    <div style="text-align:center; margin-top:30px;">
+        <img src="./assets/images/versos herrantes - PNG.png" 
+             alt="Septiembre con P de Poesía" 
+             style="width:240px; margin-bottom:20px;">
+
+        <p><strong>Escaneá este QR para explorar otras narraciones escritas por estudiantes de la ESBR:</strong></p>
+
+        <img src="./assets/images/QR/QR-prosapia.png" 
+             alt="QR" 
+             style="width:200px;">
+    </div>
+    <!-- Cita poética -->
+    <blockquote style="
+        font-style: italic;
+        color: #444;
+        border-left: 4px solid #ccc;
+        padding-left: 15px;
+        margin: 20px 0;
+        text-align: justify;
+    ">
+        El valor de lo poético se mide con la invisible vara de lo intangible;  
+        tan incalculable es como pesar el silencio con las manos.
+    </blockquote>
+
+</div>
 `;
 }
 
-
 const acortarCuento = (cuento) => {
     const arrayPalabras = cuento.split(" ")
-    const cuentoRecortado = arrayPalabras.splice(0, 250).join(" ") + "..."
+    const cuentoRecortado = arrayPalabras.splice(0, 250).join(" ") + "... [¡¡CONTINUARÁ!!]"
     return cuentoRecortado    
 }
 
@@ -338,10 +452,10 @@ IVA EXENTO - Ingresos Brutos: 67676767
 Inicio de actividades: 12/04/2021
 A LECTORX FINAL
 ------------------------------------------
-Factura falsa C N°: 0002-${formatear8(obtenerNumeroFactura())}
+Factura falsa C N°: 0003-${formatear8(obtenerNumeroFactura())}
 Fecha: ${insertarFecha()}
 ------------------------------------------
-${titulo}
+${lineaConPrecio(titulo)}
 
    \u00A0 ${seudonimo}
    \u00A0 [${autoria}]
@@ -358,6 +472,43 @@ ${acortarCuento(texto)}
 ${reconocimiento}
 `;
 }
+
+const lineaConPrecio = (titulo, precio = "0*", ancho = 42) => {
+    const derecha = `$ ${precio}`
+
+    // 1) Cortar sin romper palabras (máximo 25 caracteres)
+    let primeraLinea = titulo.slice(0, 25)
+
+    // Si el corte rompe una palabra, retrocedemos al último espacio
+    if (titulo.length > 25 && titulo[25] !== " ") {
+        const ultimoEspacio = primeraLinea.lastIndexOf(" ")
+        if (ultimoEspacio !== -1) {
+            primeraLinea = primeraLinea.slice(0, ultimoEspacio)
+        }
+    }
+
+    // 2) Segunda línea: resto del título
+    const segundaLineaTitulo = titulo.slice(primeraLinea.length)
+
+    // 3) Construir la segunda línea con el precio alineado a la derecha
+    const izquierdaSegunda = "\u00A0" + segundaLineaTitulo
+    const espacios = Math.max(0, ancho - izquierdaSegunda.length - derecha.length -2)
+    const segundaLinea = izquierdaSegunda + ".".repeat(espacios) + derecha
+
+    // 4) Si el título cabe en una sola línea
+    if (!segundaLineaTitulo) {
+        const izquierda = `1  ${primeraLinea}`
+        const espaciosUnaLinea = Math.max(0, ancho - izquierda.length - derecha.length -2)
+        return izquierda + ".".repeat(espaciosUnaLinea) + derecha
+    }
+
+    // 5) Si el título tiene dos líneas
+    return (
+        `1  ${primeraLinea}\n` +
+        segundaLinea
+    )
+}
+
 
 const formatear8 = (num) => num.toString().padStart(8, "0")
 

@@ -344,3 +344,123 @@ fondo:before {
   font-weight: 600;
 }
 
+/* Loader */
+
+/* Loader cadaver */
+
+.loader-kiwi {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenedor Fullscreen */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0b1b2b;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+/* Estado de salida */
+.loader-overlay.fadeout {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 2s ease-in-out, visibility 2s ease-in-out;
+}
+
+/* Tarjeta flotante glassmorphism */
+.loader-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2.5em 3em;
+  background: rgba(11, 27, 43, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 0 35px rgba(236, 208, 120, 0.15);
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* Contenedor del Kiwi */
+.loader-kiwi {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.2em auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Animación de flotación suave */
+  animation: kiwiFlotar 3s ease-in-out infinite alternate;
+}
+
+/* Estilos del SVG */
+.kiwi-svg {
+  width: 100%;
+  height: 100%;
+  /* Filtro de resplandor dorado (Glow) */
+  filter: drop-shadow(0 0 8px rgba(236, 208, 120, 0.5));
+  animation: kiwiGlow 2s ease-in-out infinite alternate;
+}
+
+/* Opcional: El ojo/pequeño detalle en el segundo path parpadea */
+.kiwi-svg path:last-child {
+  animation: kiwiOjo 2.5s ease-in-out infinite;
+}
+
+/* Keyframes de las animaciones */
+@keyframes kiwiFlotar {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-12px) rotate(-3deg);
+  }
+}
+
+@keyframes kiwiGlow {
+  0% {
+    filter: drop-shadow(0 0 6px rgba(236, 208, 120, 0.3));
+    opacity: 0.85;
+  }
+  100% {
+    filter: drop-shadow(0 0 16px rgba(236, 208, 120, 0.8));
+    opacity: 1;
+  }
+}
+
+@keyframes kiwiOjo {
+  0%, 90%, 100% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.2;
+  }
+}
+
+/* Textos del Loader */
+.loader-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #ECD078;
+  margin-bottom: 0.3em;
+  letter-spacing: 0.5px;
+}
+
+.loader-subtext {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  font-weight: 300;
+}

@@ -58,8 +58,11 @@
           <div class="modal-body" id="modalContenido"></div>
 
           <div class="modal-footer">
-            <button id="btnImprimirPoema" class="btn btn-warning" onclick="imprimirPoema()">
-                <i class="bi bi-printer-fill"></i> Imprimir
+            <button id="btnImprimirPoema" class="btn btn-warning" onclick="imprimirPoema('ticket')">
+              <i class="bi bi-receipt"></i> Ticket  
+            </button>
+            <button id="btnImprimirPoema" class="btn btn-warning" onclick="imprimirPoema('a4')">  
+              <i class="bi bi-printer-fill"></i> Imprimir A4
             </button>
             <button class="btn btn-secondary" data-bs-dismiss="modal">
                 <i class="bi bi-x-lg"></i> Cerrar
