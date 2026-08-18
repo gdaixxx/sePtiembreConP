@@ -1,0 +1,95 @@
+
+
+        <!-- Carrusel Bootstrap -->
+        <div id="videoCarousel" class="carousel slide" data-bs-ride="carousel">
+            
+            <div class="carousel-inner">
+                
+                <!-- Editar poesía -->
+                <div class="carousel-item active">
+                    <div class="ratio ratio-16x9">
+                        <iframe 
+                        src="https://drive.google.com/file/d/1HAtqNUzh737Ev1UnvXDchA6LCyBJ3Shu/preview" 
+                        allow="autoplay"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+            
+            <!-- sub30 -->
+            <div class="carousel-item">
+                <div class="ratio ratio-16x9">
+                    <iframe 
+                    src="https://drive.google.com/file/d/1LILwfn1D3Uw6f44Ncvp0ajNGIFmPIR9x/preview" 
+                    allow="autoplay"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+        
+        <!-- Poetrap -->
+        <div class="carousel-item">
+            <div class="ratio ratio-16x9">
+                <iframe 
+                src="https://drive.google.com/file/d/1EqKcQsqGwKNJs7y47dUaUCB3XMU4CA2t/preview" 
+                allow="autoplay"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+    
+    <!-- Peligro poesía -->
+    <div class="carousel-item">
+        <div class="ratio ratio-16x9">
+            <iframe 
+            src="https://drive.google.com/file/d/15pA547p6gbi4oZd0Rj1no5eQZ2c8zXm-/preview" 
+            allow="autoplay"
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
+
+<!-- Barco de palabras -->
+<div class="carousel-item">
+    <div class="ratio ratio-16x9">
+        <iframe 
+        src="https://drive.google.com/file/d/18o2TNtK4euHKHh59Tz92ukAGDRMcfC0_/preview" 
+        allow="autoplay"
+        allowfullscreen>
+    </iframe>
+</div>
+</div>
+
+<!-- Poesia in viaggio -->
+<div class="carousel-item">
+    <div class="ratio ratio-16x9">
+        <iframe 
+        src="https://drive.google.com/file/d/1RZPvxXMoGw0ZpQboq7ebrQsFwp_Tp4my/preview" 
+        allow="autoplay"
+        allowfullscreen>
+    </iframe>
+</div>
+</div>
+<!-- Reediciones -->
+<div class="carousel-item">
+    <div class="ratio ratio-16x9">
+        <iframe 
+        src="https://drive.google.com/file/d/1o2r-ZFu2HbljVa0Zf3mniyWYOGSdsVJA/preview" 
+        allow="autoplay"
+        allowfullscreen>
+    </iframe>
+</div>
+</div>
+
+</div>
+
+<!-- Controles -->
+<button class="carousel-control-prev" type="button" data-bs-target="#videoCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+</button>
+
+<button class="carousel-control-next" type="button" data-bs-target="#videoCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+</button>
+
+</div>
