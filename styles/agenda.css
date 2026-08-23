@@ -1,0 +1,238 @@
+:root {
+  --primary-color: #c20067;
+  --light-gray: #e2e2e6;
+  --dark-gray: #555555;
+  --text-white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  color: #333;
+  background-color: #0b1b2b;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main{
+    margin: 20px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 1em;
+}
+
+footer{
+    margin-top: auto;
+    text-align: center;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+    padding: 0.75rem 0;
+    color: #555;
+    background: #f2f2f2;    
+    opacity: 0.8;
+}
+
+
+.fondo,
+.fondo:before{
+    --s: 56px; /* control the size */
+    --g: 10px; /* control the gap */
+    --c: #ECD078; /* first color */
+    
+    --_l: #0000 calc(33% - .866*var(--g)),var(--c) calc(33.2% - .866*var(--g)) 33%,#0000 34%;
+    background:
+    repeating-linear-gradient(var(--c) 0 var(--g), #0000 0 50%)
+    0 calc(.866*var(--s) - var(--g)/2),
+    conic-gradient(from -150deg at var(--g) 50%,var(--c) 120deg,#0000 0),
+    linear-gradient(-120deg,var(--_l)),linear-gradient( -60deg,var(--_l))
+    #0B486B; /* second color */
+    background-size: var(--s) calc(3.466*var(--s));
+    animation: p infinite 2s linear;
+}
+fondo:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    -webkit-mask: 
+    linear-gradient(#000 50%,#0000 0) 
+    0 calc(.866*var(--s))/100% calc(3.466*var(--s));
+    animation-direction: reverse;
+}
+@keyframes p {
+    to {
+        background-position-x: calc(-1*var(--s));
+    }
+}
+
+
+.container {x
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* BANNERS PRINCIPALES */
+.banner {
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  border-radius: 50px;
+  padding: 12px 25px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.banner-icon {
+  background-color: var(--text-white);
+  color: var(--primary-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.banner h1, .banner h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+/* GRID PRINCIPAL (5 DÍAS) */
+.agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.day-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.day-header {
+  border: 2px dotted var(--primary-color);
+  border-radius: 25px;
+  text-align: center;
+  padding: 8px;
+  font-size: 1.2rem;
+  color: #222;
+}
+
+/* SUB-GRIDS DE 2 COLUMNAS (MIÉRCOLES Y JUEVES) */
+.sub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* TARJETAS Y CÁPSULAS */
+.card {
+  border-radius: 18px;
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pink-card {
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  border-radius: 8px;
+}
+
+.magenta-pill {
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  border-radius: 22px;
+}
+
+.gray-pill {
+  background-color: var(--light-gray);
+  color: var(--dark-gray);
+  border-radius: 22px;
+  font-weight: 500;
+}
+
+.big-pill {
+  min-height: 70px;
+  font-size: 1.1rem;
+}
+
+.icon-pill {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.icons-row {
+  flex-direction: row;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.small-text {
+  font-size: 0.72rem;
+  line-height: 1.1;
+}
+
+/* SECCIONES INFERIORES PUNTEADAS */
+.bottom-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: white;
+}
+
+.dotted-capsule {
+  border: 2px dotted var(--primary-color);
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 1.05rem;
+  width: fit-content;
+}
+
+.align-left { align-self: flex-start; }
+.align-right { align-self: flex-end; }
+.align-center { align-self: center; }
+.width-full { width: 100%; text-align: center; }
+
+/* RESPONSIVE (PANTALLAS PEQUEÑAS) */
+@media (max-width: 900px) {
+  .agenda-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .agenda-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .align-left, .align-right {
+    align-self: stretch;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .banner h1, .banner h2 {
+    font-size: 1.1rem;
+  }
+}
+
+

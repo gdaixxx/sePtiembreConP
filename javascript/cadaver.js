@@ -77,8 +77,8 @@ function guardarVersoExitoso(nuevoVerso){
 
 function procesarVersoConAdvertencia(verso) {
 
-    const errorSound = new Audio('./assets/sounds/error.mp3')
-    const dignidadSound = new Audio('./assets/sounds/you-have-no-dignity.mp3')
+    const errorSound = new Audio('../assets/sounds/error.mp3')
+    const dignidadSound = new Audio('../assets/sounds/you-have-no-dignity.mp3')
     errorSound.play()
 
     Swal.fire({
@@ -151,7 +151,7 @@ const terminarPoema = () => {
         // const sonido = document.getElementById("sonido-final")
         video.playbackRate = 2
         video.play()  
-        reproducirSonido("./assets/sounds/funebre.mp3", 1.2, 0.8)
+        reproducirSonido("../assets/sounds/funebre.mp3", 1.2, 0.8)
         document.getElementById("nuevo-poema").disabled = false // efecto de destacar
     }
 }
@@ -179,7 +179,7 @@ const nuevoPoema = () => {
     document.getElementById("video-fondo").pause() 
     habilitarTerminar()   
     deshabilitarImprimir()
-    reproducirSonido("./assets/sounds/cancel.mp3", 1, 1)
+    reproducirSonido("../assets/sounds/cancel.mp3", 1, 1)
 }
 
 
@@ -230,7 +230,7 @@ const imprimirCadaver = () => {
         }
     } 
 
-    reproducirSonido("./assets/sounds/ring.mp3", 1, 1)
+    reproducirSonido("../assets/sounds/ring.mp3", 1, 1)
     ventanaImpresion.document.write('</body></html>')
     ventanaImpresion.document.close()
     ventanaImpresion.print()
@@ -403,25 +403,25 @@ function reproducirSonido(ruta, velocidad = 1, volumen = 1) {
 // Audios al azar para nuevo
 
 const sonidosPool = [
-    "./assets/sounds/send-sound/aldeano1.mp3",
-    "./assets/sounds/send-sound/coin.mp3",
-    "./assets/sounds/send-sound/Witch_celebrate.mp3",
-    "./assets/sounds/send-sound/sendo (1).mp3",
-    "./assets/sounds/send-sound/sendo (2).mp3",
-    "./assets/sounds/send-sound/sendo (3).mp3",
-    "./assets/sounds/send-sound/sendo (4).mp3",
-    "./assets/sounds/send-sound/sendo (5).mp3",
-    "./assets/sounds/send-sound/sendo (1).ogg",
-    "./assets/sounds/send-sound/sendo (2).ogg",
-    "./assets/sounds/send-sound/sendo (3).ogg",
-    "./assets/sounds/send-sound/sendo (4).ogg",
-    "./assets/sounds/send-sound/sendo (5).ogg",
-    "./assets/sounds/send-sound/sendo (6).ogg",
-    "./assets/sounds/send-sound/sendo (7).ogg",
-    "./assets/sounds/send-sound/sendo (8).ogg",
-    "./assets/sounds/send-sound/sendo (9).ogg",
-    "./assets/sounds/send-sound/sendo (10).ogg",
-    "./assets/sounds/send-sound/sendo (11).ogg",
+    "../assets/sounds/send-sound/aldeano1.mp3",
+    "../assets/sounds/send-sound/coin.mp3",
+    "../assets/sounds/send-sound/Witch_celebrate.mp3",
+    "../assets/sounds/send-sound/sendo (1).mp3",
+    "../assets/sounds/send-sound/sendo (2).mp3",
+    "../assets/sounds/send-sound/sendo (3).mp3",
+    "../assets/sounds/send-sound/sendo (4).mp3",
+    "../assets/sounds/send-sound/sendo (5).mp3",
+    "../assets/sounds/send-sound/sendo (1).ogg",
+    "../assets/sounds/send-sound/sendo (2).ogg",
+    "../assets/sounds/send-sound/sendo (3).ogg",
+    "../assets/sounds/send-sound/sendo (4).ogg",
+    "../assets/sounds/send-sound/sendo (5).ogg",
+    "../assets/sounds/send-sound/sendo (6).ogg",
+    "../assets/sounds/send-sound/sendo (7).ogg",
+    "../assets/sounds/send-sound/sendo (8).ogg",
+    "../assets/sounds/send-sound/sendo (9).ogg",
+    "../assets/sounds/send-sound/sendo (10).ogg",
+    "../assets/sounds/send-sound/sendo (11).ogg",
 ];
 
 function reproducirSonidoAzar() {

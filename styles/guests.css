@@ -1,0 +1,336 @@
+:root{
+    --texto:#ECD078;
+    --fondo: radial-gradient(circle at 50% 20%, #0f1c33, #08101f 60%, #050b17);
+    --card-color: #101e3b;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-user-select: none; /* Safari */
+    user-select: none; /* Standard syntax */
+}
+
+body {
+    background: var(--fondo);
+    /* color: var(--texto); */
+    font-family: "Quicksand", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+    margin-bottom: 2em;
+}
+
+
+main{
+    margin: 20px;
+    /* background-color: white; */
+    border-radius: 8px;
+    padding: 1em;
+}
+
+footer{
+    margin-top: auto;
+    text-align: center;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9rem;
+    padding: 0.75rem 0;
+    color: #555;
+    background: #f2f2f2;    
+    opacity: 0.8;
+}
+
+header{
+  position: sticky;
+  top: 0; 
+  z-index: 999;
+}
+
+.fondo,
+.fondo:before{
+    --s: 56px; /* control the size */
+    --g: 10px; /* control the gap */
+    --c: #ECD078; /* first color */
+    
+    --_l: #0000 calc(33% - .866*var(--g)),var(--c) calc(33.2% - .866*var(--g)) 33%,#0000 34%;
+    background:
+    repeating-linear-gradient(var(--c) 0 var(--g), #0000 0 50%)
+    0 calc(.866*var(--s) - var(--g)/2),
+    conic-gradient(from -150deg at var(--g) 50%,var(--c) 120deg,#0000 0),
+    linear-gradient(-120deg,var(--_l)),linear-gradient( -60deg,var(--_l))
+    #0B486B; /* second color */
+    background-size: var(--s) calc(3.466*var(--s));
+    animation: p infinite 2s linear;
+}
+fondo:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    -webkit-mask: 
+    linear-gradient(#000 50%,#0000 0) 
+    0 calc(.866*var(--s))/100% calc(3.466*var(--s));
+    animation-direction: reverse;
+}
+@keyframes p {
+    to {
+        background-position-x: calc(-1*var(--s));
+    }
+}
+
+/* Intro */
+
+.intro-texto strong, 
+.intro-texto .highlight {
+  color: #ecd078;
+  font-weight: 700;
+}
+
+.icono-grande svg {
+    width: 100% !important;
+    height: 100% !important;
+    /* max-width: 125px; */
+    max-height: 125px;
+}
+
+.tit2{
+font-family: 'Quicksand', sans-serif;
+  font-size: 3.2rem;       /* Tamaño grande destacado */
+  font-weight: 900;        /* Negrita marcada y redondeada */
+  color: #ECD078;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.intro-texto {
+  font-family: 'Quicksand', sans-serif;
+  color: #94a3b8; /* Mismo gris tenue del subtexto del loader */
+  font-size: 1.1rem;
+  max-width: 650px;
+  margin: 0 auto 2.5em auto; /* Centrado con espacio inferior */
+  text-align: center;
+  line-height: 1.6;
+}
+
+.intro-texto {
+  font-family: 'Quicksand', sans-serif;
+  color: #cbd5e1; /* Gris claro de alto contraste */
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.7;
+  max-width: 1000px;
+  margin: 2em auto 3em auto;
+  text-align: center;
+  padding: 0 0.5em;
+}
+
+.titulo-principal {
+  color: #ECD078;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;             
+  /* max-width: fit-content; */
+  width: 100%;
+  justify-content: center;
+  margin: 0.5em auto;
+  padding-top: 1.8em;
+}
+
+.titulo-principal h2 {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;  
+}
+
+
+/* Cards */
+
+
+.guest-card{
+    padding: 8px;
+    width:  200px;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    
+}
+
+.guest-name{
+    position: absolute;
+    top: 180px;
+    display: block;
+    background-color: var(--texto);
+    width: 100%;
+    /* color: var(--card-color); */
+    text-align: center;
+    font-weight: 600;
+    padding: 3px;
+}
+
+.guest-more{
+    position: relative;
+    bottom: -70px;
+    background-color: white;
+    width: 45px;
+    height: 45px;
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.guest-photo{
+    height:180px;
+    width: auto;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    background-color: var(--card-color);
+    border: solid 12px lightgrey;
+    padding: 4px;
+    
+}
+
+.guest-container{
+  width:100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content:space-around;
+}
+
+/* CARD */
+.card-hover {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card-hover .foto {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 6px solid #f7d84a;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+}
+
+.card-hover .foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.4s ease;
+}
+
+.card-hover .nombre {
+  background: #f7d84a;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: all 0.4s ease;
+  text-align: center;
+}
+
+
+/* HOVER */
+.card-hover:hover .foto {
+  transform: scale(1.08);
+  border-color: #d4a017;
+  box-shadow: 0 0 20px rgba(255, 220, 120, 0.7);
+}
+
+.card-hover:hover .foto img {
+  filter: brightness(1.15);
+}
+
+.card-hover:hover .nombre {
+  transform: translateY(6px);
+  background: linear-gradient(90deg, #f7d84a, #d4a017);
+}
+
+/* OFFCANVAS FULLSCREEN */
+.offcanvas {
+  height: calc(100vh - 25px) !important;
+  padding: 20px;
+  background-color: #1c1a17 !important;
+
+}
+
+.offcanvas-foto {
+  width: 220px;
+  height: 220px;
+  /* margin: 0 auto 20px auto; */
+  border-radius: 50%;
+  overflow: hidden;
+  border: 6px solid #d4a017;
+  box-shadow: 0 0 25px rgba(255, 220, 120, 0.5);
+  display: block;
+    flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 220px;
+}
+
+.offcanvas-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bio {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.offcanvas-title{
+  font-variant:small-caps;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #d4a017
+}
+
+.offcanvas-title::after{
+  content: "";
+  display: block;
+  background: linear-gradient(135deg, #ecd870 0%, #1c1a17 100%);
+  height: 0.1em;
+  margin-bottom: 0.25em;
+  
+}
+
+.offcanvas-body{
+  display: flex;
+  flex-wrap:wrap;
+  gap: 2em;
+  justify-content: center;
+}
+
+.offcanvas-text{
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 300px;
+  padding: 1em;
+}
+
+@media (max-width: 620px){
+  .offcanvas-title::after{
+    background: linear-gradient(135deg, #1c1a17 0%, #ecd870 50%, #1c1a17 100%);
+    height: 0.1em;
+    margin-bottom: 0.25em;
+    border: none;
+  }
+
+  .offcanvas-text, .bio{
+    text-align: center;
+  }
+
+}

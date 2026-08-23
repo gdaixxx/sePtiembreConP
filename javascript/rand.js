@@ -63,7 +63,7 @@ const randomPoemHandler = () => {
     autoria = poemaRandom.Autoría
     titulo  = poemaRandom.Título
     dato = poemaRandom.Dato
-    const audio = new Audio("./assets/sounds/send-sound/coin.mp3")
+    const audio = new Audio("../assets/sounds/send-sound/coin.mp3")
     audio.play()
     
 }
@@ -156,7 +156,7 @@ const imprimirPoema = () => {
         </body>
         </html>
     `) 
-    const audio = new Audio("./assets/sounds/ring.mp3")
+    const audio = new Audio("../assets/sounds/ring.mp3")
     audio.play()
     ventanaImpresion.document.close()
     ventanaImpresion.print()
