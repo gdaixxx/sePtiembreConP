@@ -334,3 +334,16 @@ font-family: 'Quicksand', sans-serif;
   }
 
 }
+
+.instagram{
+	display: inline-block;
+	padding: 1em;
+	margin-bottom: 1em;
+  color: var(--texto)
+}
+
+.instagram:hover{
+  opacity: 0.8;
+  transition: opacity 0.3s ease; 
+  transform: scale(1.2);
+}

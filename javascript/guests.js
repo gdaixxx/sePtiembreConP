@@ -44,6 +44,7 @@ const loadOffcanvas = (guest) => {
   const offcanvasFoto = document.querySelector(".offcanvas-foto")
   const offcanvasBio = document.querySelector(".bio")
   const offcanvasRemark = document.querySelector(".remark")
+  const offcanvasInstagram = document.querySelector(".instagram")
 
   offcanvasTitle.textContent = `${guest.nombre} ${guest.apellido}`
 
@@ -51,6 +52,9 @@ const loadOffcanvas = (guest) => {
 
   offcanvasBio.textContent = guest.bio
   offcanvasRemark.textContent = guest.remark
+  
+  offcanvasInstagram.style.display = guest.instagram ? "inline-block" : "none"
+  offcanvasInstagram.href = guest.instagram
 
 }
 

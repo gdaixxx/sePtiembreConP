@@ -1,4 +1,4 @@
-/* Fondo nocturno */
+/* Fondo*/
 body {
     background: radial-gradient(circle at 50% 20%, #0f1c33, #08101f 60%, #050b17);
     color: #ECD078;
@@ -7,6 +7,12 @@ body {
     /* padding-bottom: 4rem; */
     display: flex;
     flex-direction: column;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-user-select: none; /* Safari */
+    user-select: none; /* Standard syntax */
 }
 
 main{
@@ -32,7 +38,7 @@ main{
 /* Botonera */
 .botonera-inicio {
     display: flex;
-    gap: 3rem;
+    gap: 4.2rem;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -176,3 +182,7 @@ footer{
     background: linear-gradient(to right, transparent, #ECD07888, transparent);
 }
 
+.custom-tooltip {
+  --bs-tooltip-bg: var(--bd-violet-bg);
+  --bs-tooltip-color: var(--bs-white);
+}

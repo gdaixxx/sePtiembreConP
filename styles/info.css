@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    -webkit-user-select: none; /* Safari */
+    user-select: none; /* Standard syntax */
 }
 
 
@@ -11,6 +13,12 @@ body {
     /* padding-bottom: 4rem; */
     display: flex;
     flex-direction: column;
+}
+
+header{
+  position: sticky;
+  top: 0; 
+  z-index: 999;
 }
 
 /* The actual timeline (the vertical ruler) */
