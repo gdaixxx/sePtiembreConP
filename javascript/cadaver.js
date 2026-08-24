@@ -185,7 +185,7 @@ const nuevoPoema = () => {
 
 const imprimirCadaver = () => {
     const textoImprimible = normalizarTexto(poema)
-    const ticketFinal = plantillaCadaver(textoImprimible)
+    const ticketFinal = plantillaCadaver(textoImprimible) + `<div style='display: flex; flex-direction: column; justify-content: center; align-items: center'><img src="../assets/images/QR/QR-home.png" alt="QR" style="max-width: 200px; height: auto;"> <br></div>`
     const cantidadCopias = parseInt(document.getElementById("copias").value) || 1
     
     const ventanaImpresion = window.open("", "_blank")
@@ -197,9 +197,10 @@ const imprimirCadaver = () => {
             <title>Imprimir Cadáver Exquisito</title>
             <style>
                 body {
-                    font-family: 'Courier New', Courier, monospace;
+                    font-family:  'FontA2x2', 'FontA', consolas;
                     font-size: 14px;
                     padding: 15px;
+                    line-height: 1.2;
                     width: 340px; 
                 }
                 .ticket-copia { 
@@ -214,6 +215,9 @@ const imprimirCadaver = () => {
             </style>
         </head>
         <body>
+        <div style="text-align: center; width: 340px">
+        <img src="../assets/images/encabezado-cadaver.png" style='width: 95%' alt="">
+        </div>
     `);
 
     // 2. El bucle ahora sí escribe solo las copias de los tickets
@@ -306,8 +310,6 @@ EXQUISITO, UN POEMA ESCRITO POR MUCHXS
 QUE AHORA YA NO ES DE NADIE Y A LA VEZ
 ES DE TODXS. FELICITACIONES, HAS MATADO 
 LA FIGURA DEL AUTOR.
-
-[Espacio para código QR]
 ------------------------------------------`;
 }
 

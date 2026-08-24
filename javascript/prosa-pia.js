@@ -288,15 +288,15 @@ const imprimirPoema = (config) => {
         <body>
         
         <div style="text-align: center">
-        <img src="./assets/images/encabezado-prosapia.png" width="200px" alt="">
+        <img src="../assets/images/encabezado-prosapia.png" width="200px" alt="">
         </div>
         <div class="ticket-copia">${ticketFinal}</div>
         <div style="text-align: center; margin-bottom:1em">
         <hr>
-         <img src="./assets/images/versos herrantes - PNG.png" width="200px" alt="">
+         <img src="../assets/images/versos herrantes - PNG.png" width="200px" alt="">
           <hr>
         <strong>Escaneá este QR para conocer el final de esta historia y explorar otras:</strong>
-            <img src="./assets/images/QR/QR-prosapia.png" alt="QR" style="max-width: 200px; height: auto;">
+            <img src="../assets/images/QR/QR-prosapia.png" alt="QR" style="max-width: 200px; height: auto;">
             </div>
         </body>
         </html>

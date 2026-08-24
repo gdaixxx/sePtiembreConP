@@ -243,6 +243,7 @@ const imprimirPoema = (config) => {
                     font-size: 14px;
                     line-height: 1.2;
                     // padding: 15px;
+                    max-width: 340px;
                     width: 97%; 
                 }
                 .ticket-copia { 
@@ -268,16 +269,16 @@ const imprimirPoema = (config) => {
         <body>
         
         <div style="text-align: center">
-        <img src="./assets/images/versos herrantes - PNG.png" width="200px" alt="">
+        <img src="../assets/images/versos herrantes - PNG.png" width="200px" alt="">
         </div>
-        <div class="ticket-copia">${ticketFinal}</div>
+        <div class="ticket-copia" style="padding-right:3px">${ticketFinal}</div>
                 <div style="text-align: center">
-        <img src="./assets/images/encabezado-saraverso.png" width="200px" alt="">
+        <img src="../assets/images/encabezado-saraverso.png" width="200px" alt="">
 
         </div>
         <div class="pie">
             <strong>Conocé otros poemas del Sara-verso entrando a este QR:</strong>
-            <img src="./assets/images/QR/QR-saraverso.png" 
+            <img src="../assets/images/QR/QR-saraverso.png" 
                 alt="QR" 
                 style="max-width: 200px; height: auto;">
         </div>

@@ -146,12 +146,15 @@ const imprimirPoema = () => {
         <body>
         
         <div style="text-align: center">
-        <img src="./assets/images/versos herrantes - PNG.png" width="200px" alt="">
+        <img src="../assets/images/encabezado-rand.png" width="200px" alt="">
         </div>
         <div class="ticket-copia">${ticketFinal}</div>
         <div style="text-align: center; margin-bottom:1em">
+                <hr>
+         <img src="../assets/images/versos herrantes - PNG.png" width="200px" alt="">
+          <hr>
         <strong>Conocé más factos entrando a este QR:</strong>
-            <img src="./assets/images/QR/QR-cartilla.png" alt="QR" style="max-width: 200px; height: auto;">
+            <img src="../assets/images/QR/QR-cartilla.png" alt="QR" style="max-width: 200px; height: auto;">
             </div>
         </body>
         </html>
@@ -308,7 +311,6 @@ ${texto}
 
 ❯❯ ${dato} ❮❮
 
-------------------------------------------
 `;
 }
 
