@@ -286,7 +286,7 @@ const imprimirPoema = (config) => {
         </body>
         </html>
     `) 
-    const audio = new Audio("./assets/sounds/ring.mp3")
+    const audio = new Audio("../assets/sounds/ring.mp3")
     audio.play()
     ventanaImpresion.document.close()
     ventanaImpresion.print()
@@ -364,7 +364,7 @@ const plantillaA4 = (texto, titulo, seudonimo, autoria, reconocimiento) => {
 
     <!-- Encabezado PROSAPIA -->
     <div style="text-align:center; margin-bottom: 20px;">
-        <img src="./assets/images/encabezado-saraverso.png" 
+        <img src="../assets/images/encabezado-saraverso.png" 
              alt="Saraverso" 
              style="width:240px; margin-bottom:15px;">
     </div>
@@ -440,13 +440,13 @@ const plantillaA4 = (texto, titulo, seudonimo, autoria, reconocimiento) => {
 
     <!-- Pie con imagen de septiembre + QR -->
     <div style="text-align:center; margin-top:30px;">
-        <img src="./assets/images/versos herrantes - PNG.png" 
+        <img src="../assets/images/versos herrantes - PNG.png" 
              alt="Septiembre con P de Poesía" 
              style="width:240px; margin-bottom:20px;">
 
         <p><strong>Escaneá este QR para explorar otros poemas de estudiantes de la ESBR:</strong></p>
 
-        <img src="./assets/images/QR/QR-saraverso.png" 
+        <img src="../assets/images/QR/QR-saraverso.png" 
              alt="QR" 
              style="width:200px;">
     </div>

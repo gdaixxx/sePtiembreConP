@@ -64,7 +64,7 @@ function mostrarSpinner() {
     </div>
 
     <!-- Textos -->
-    <h2 class="loader-title">Explorando la PROSA pía pía pia...</h2>
+    <h2 class="loader-title">Explorando la PROSA pía pía pía...</h2>
     <p class="loader-subtext">Cargando cuentos de estudiantes</p>
   </div>
 </div>
@@ -301,7 +301,7 @@ const imprimirPoema = (config) => {
         </body>
         </html>
     `) 
-    const audio = new Audio("./assets/sounds/ring.mp3")
+    const audio = new Audio("../assets/sounds/ring.mp3")
     audio.play()
     ventanaImpresion.document.close()
     ventanaImpresion.print()
@@ -348,7 +348,7 @@ const plantillaA4 = (texto, titulo, seudonimo, autoria, reconocimiento) => {
 
     <!-- Encabezado PROSAPIA -->
     <div style="text-align:center; margin-bottom: 20px;">
-        <img src="./assets/images/encabezado-prosapia.png" 
+        <img src="../assets/images/encabezado-prosapia.png" 
              alt="PROSAPIA" 
              style="width:240px; margin-bottom:15px;">
     </div>
@@ -411,13 +411,13 @@ const plantillaA4 = (texto, titulo, seudonimo, autoria, reconocimiento) => {
 
     <!-- Pie con imagen de septiembre + QR -->
     <div style="text-align:center; margin-top:30px;">
-        <img src="./assets/images/versos herrantes - PNG.png" 
+        <img src="../assets/images/versos herrantes - PNG.png" 
              alt="Septiembre con P de Poesía" 
              style="width:240px; margin-bottom:20px;">
 
         <p><strong>Escaneá este QR para explorar otras narraciones escritas por estudiantes de la ESBR:</strong></p>
 
-        <img src="./assets/images/QR/QR-prosapia.png" 
+        <img src="../assets/images/QR/QR-prosapia.png" 
              alt="QR" 
              style="width:200px;">
     </div>
