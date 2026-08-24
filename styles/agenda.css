@@ -237,3 +237,34 @@ fondo:before {
 }
 
 
+
+/* Tooltips */
+.custom-tooltip {
+  --bs-tooltip-bg: #ecd078cc;
+  --bs-tooltip-color: #141414;
+}
+
+.home{
+  align-content: center !important;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+.btn.rounded-circle {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-btn-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-wide{
+  width: 100%;
+}
