@@ -161,17 +161,7 @@ footer{
     margin: 0 auto 0.5em;
     background: linear-gradient(to right, transparent, #ECD078aa, transparent);
 }
-/* 
-.titulo-index-secundario {
-    text-align: center;
-    margin-top: -0.5rem;
-    font-size: 1.6rem;
-    letter-spacing: 2px;
-    color: #ECD078cc; /* más suave que el h1 */
-    font-style: italic;
-    text-shadow: 0 0 6px #ecd07833;
-    position: relative;
-/* } */
+
 
 .titulo-index-secundario::after {
     content: "";

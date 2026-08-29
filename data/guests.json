@@ -23,7 +23,7 @@
     "nombre": "Rosana",
     "año": 2024,
     "instagram": "",
-    "bio": "Poeta y docente rosarina, egresada de la carrera de Letras por la Universidad Nacional de Rosario, donde se desempeña como profesora adjunta en la asignatura Análisis de Texto. En su tiempo libre, colabora con las contratapas de Rosario 12, suplemento del diario Página 12, y participa con intervenciones literarias en el programa radial “El perseguidor”. En 2018 coordinó y compiló los poemas de la antología poética santafesina Los Reinos de Poesía (Editorial Casagrande), elaborada para Escuelas Secundarias, con posterior reconocimiento del Ministerio de Educación de la Nación. En 2019, publicó Costura invisible, su primer libro de poesía, en la colección Alfa de Editorial Biblioteca Vigil; y en 2022, con Le pecore nere presentó su primer libro para las infancias, Lara pestañas largas. Junto a otras colegas de la ONG “Mujeres tras las rejas”, coordina el taller de poesía en la Unidad Penitenciaria N° 5 de la ciudad de Rosario, que en 2023 lanzó su propia antología poética: Luz en la caja: Escritos de la Unidad 5. En vistas de su trayectoria, en 2024 ha sido convocada como miembro del jurado del X Concurso Intercolegial de Cuento y Poesía para Estudiantes de Escuelas Preuniversitarias de la UNR.",
+    "bio": "Poeta y docente rosarina, egresada de la carrera de Letras por la Universidad Nacional de Rosario, donde se desempeña como profesora adjunta en la asignatura Análisis de Texto. En su tiempo libre, colabora con las contratapas de Rosario 12, suplemento del diario Página 12, y participó con intervenciones literarias en el programa radial “El perseguidor”. En 2018 coordinó y compiló los poemas de la antología poética santafesina Los Reinos de Poesía (Editorial Casagrande), elaborada para Escuelas Secundarias, con posterior reconocimiento del Ministerio de Educación de la Nación. En 2019, publicó Costura invisible, su primer libro de poesía, en la colección Alfa de Editorial Biblioteca Vigil; y en 2022, con Le pecore nere presentó su primer libro para las infancias, Lara pestañas largas. Junto a otras colegas de la ONG “Mujeres tras las rejas”, coordinó el taller de poesía en la Unidad Penitenciaria N° 5 de la ciudad de Rosario, que en 2023 lanzó su propia antología poética: Luz en la caja: Escritos de la Unidad 5. En vistas de su trayectoria, en 2024 ha sido convocada como miembro del jurado del X Concurso Intercolegial de Cuento y Poesía para Estudiantes de Escuelas Preuniversitarias de la UNR.",
     "remark": "En 2024 visitó la Escuela Sara Bartfeld Rietti junto a Carolina Musa, para inaugurar juntas el bloque 'Editar poesía hoy (y no morir en el intento)'. Conversaron en mesa redonda con estudiantes de cuatro año acerca de su experiencia dentro del circuito editorial y algunos de sus márgenes. Entre ellos, el devenir de un taller de poesía desarrollado en la cárcela de mujeres, a partir del cual se publicaría luego en formato de libro físico una antología poética."
   },
   {
@@ -176,8 +176,9 @@
     "apellido": "Igarzabal",
     "nombre": "Francisco",
     "año": 2026,
-    "instagram": "",
-    "bio": ""
+    "instagram": "https://www.instagram.com/fraanigarzabal/",
+    "bio": "Nació en Rosario en 2001. Cursó los estudios secundarios en el Instituto Politécnico (UNR), período en el cual participó de algunos concursos de narrativa y poesía, obteniendo un primer y tercer puesto, y una mención especial. Es actor, egresado de la Escuela Provincial de Teatro Ambrosio Morante (2022); hoy en día se desempeña como técnico en la sala La Morada, y como tallerista en la sala Tandava. Cursó tres años de la Licenciatura en Recursos Naturales (UNR). Actualmente, es estudiante avanzado de la carrera de Letras en la Facultad de Humanidades y Artes (UNR), y del Traductorado en Inglés en el IES Olga Cossettini. Dentro de la carrera de Letras, ha sido ayudante alumno de Análisis del Texto (Com. 2) durante los años 2024 y 2025, y es ayudante alumno de Análisis y Crítica I desde el 2025. En el año 2025 presentó una ponencia titulada El Lazarillo de Tormes: un nuevo elegido, una gran ironía en el Encuentro Nacional de Estudiantes de Letras (ENEL). A la vez, participa de diversos eventos de poesía y narrativa en la ciudad.",
+    "remark": "En 2026 participa de SePtiembre con P de Poesía en el marco del bloque 'Sub30', con intervenciones poéticas en salones de segundo y tercer año."
   },
   {
     "id": 21,
@@ -204,5 +205,13 @@
     "año": "2024 y 2025",
     "instagram": "",
     "bio": ""
+  },
+  {
+    "id": 24,
+    "apellido": "Cheres Buigues",
+    "nombre": "Candela",
+    "año": 2025,
+    "instagram": "",
+    "bio": "Nacida en Rosario en 2001. Estudia la Licenciatura en Letras en la UNR. Escribe, hace canciones y publica fanzines."
   }
 ]
